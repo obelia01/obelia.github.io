@@ -4,7 +4,7 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="域名/DNS 配置, obelia">
+    <meta name="keywords" content="xray 反连平台搭建, obelia">
     <meta name="description" content="菜🐔一枚，大哥带带？">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -16,7 +16,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>域名/DNS 配置 | obelia</title>
+    <title>xray 反连平台搭建 | obelia</title>
     <link rel="icon" type="image/png" href="/28.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
@@ -294,12 +294,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/7.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/15.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">域名/DNS 配置</h1>
+                    <h1 class="description center-align post-title">xray 反连平台搭建</h1>
                 </div>
             </div>
         </div>
@@ -419,10 +419,6 @@
                                 <span class="chip bg-color">配置</span>
                             </a>
                         
-                            <a href="/tags/%E6%9C%8D%E5%8A%A1%E5%99%A8/">
-                                <span class="chip bg-color">服务器</span>
-                            </a>
-                        
                     </div>
                     
                 </div>
@@ -435,21 +431,21 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2021-05-27
+                    2021-05-20
                 </div>
                 
 
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
-                    2021-06-01
+                    2021-06-02
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    271
+                    346
                 </div>
                 
 
@@ -479,32 +475,46 @@
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h1 id="域名-DNS-相关配置"><a href="#域名-DNS-相关配置" class="headerlink" title="域名/DNS 相关配置"></a>域名/DNS 相关配置</h1><span id="more"></span>
-<h2 id="1-域名-DNS配置"><a href="#1-域名-DNS配置" class="headerlink" title="1 域名/DNS配置"></a>1 域名/DNS配置</h2><h3 id="1-1注册google-邮箱"><a href="#1-1注册google-邮箱" class="headerlink" title="1.1注册google 邮箱"></a>1.1注册google 邮箱</h3><p>需要提前注册好，这里不做过多描述</p>
-<h3 id="1-2注册免费域名"><a href="#1-2注册免费域名" class="headerlink" title="1.2注册免费域名"></a>1.2注册免费域名</h3><p>地址：<a target="_blank" rel="noopener" href="https://my.freenom.com/">https://my.freenom.com/</a></p>
-<p>下图几个域名后缀为免费域名</p>
-<img src="/2021/05/27/yu-ming-dns-pei-zhi/img-1.png" class="slug">
-<p>这里需要先把vpn改到全局代理，然后注册域名，注册完以后需要先修改用户信息，再去付款，最高可以选择一年，然后去goole邮箱激活</p>
-<h3 id="1-3注册登录免费CDN"><a href="#1-3注册登录免费CDN" class="headerlink" title="1.3注册登录免费CDN"></a>1.3注册登录免费CDN</h3><p>地址：<a target="_blank" rel="noopener" href="https://dash.cloudflare.com/">https://dash.cloudflare.com/</a></p>
-<img src="/2021/05/27/yu-ming-dns-pei-zhi/img-2.png" class="slug">
-<p>注册完后，输入子域名</p>
-<img src="/2021/05/27/yu-ming-dns-pei-zhi/img-3.png" class="slug">
-<p>将ns地址填入</p>
-<img src="/2021/05/27/yu-ming-dns-pei-zhi/img-4.png" class="slug">
-<p>即可</p>
-<p>参考：<a target="_blank" rel="noopener" href="https://mp.weixin.qq.com/s/S_REwcYlJGpyiJb3PIwsOQ">https://mp.weixin.qq.com/s/S_REwcYlJGpyiJb3PIwsOQ</a></p>
-<p><a target="_blank" rel="noopener" href="https://zhujitips.com/328">https://zhujitips.com/328</a></p>
-<h2 id="2-C2服务器隐藏"><a href="#2-C2服务器隐藏" class="headerlink" title="2 C2服务器隐藏"></a>2 C2服务器隐藏</h2><p>链接cs服务端，在这之后新建一个监听器为 http 的，然后 Hosts 和 Beacons 都设置为域名：</p>
-<img src="/2021/05/27/yu-ming-dns-pei-zhi/img-5.png" class="slug">
-<p>注意 http port 端口只能设置成以下几个：</p>
-<pre class="line-numbers language-none"><code class="language-none">80,8080,8880,2052,2082,2086,2095<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+                <h1 id="Xray-反连平台搭建"><a href="#Xray-反连平台搭建" class="headerlink" title="Xray 反连平台搭建"></a>Xray 反连平台搭建</h1><span id="more"></span>
 
-<p>如果是 https 的监听端口只能设置成以下几个：</p>
-<pre class="line-numbers language-none"><code class="language-none">443,2053,2083,2087,2096,8443;<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<h2 id="1-简单介绍"><a href="#1-简单介绍" class="headerlink" title="1. 简单介绍"></a>1. 简单介绍</h2><p>xray是一款功能强大的安全评估工具,支持常见web漏洞的自动化检测,可以在 Github兔费下载使用(不开源)</p>
+<h2 id="2-下载"><a href="#2-下载" class="headerlink" title="2. 下载"></a>2. 下载</h2><p><a href=https://download.xray.cool/>国内下载_地址</a></p>
+<p><a href=https://github.com/chaitin/xray>github地址</a></p>
+<p><a href=https://docs.xray.cool/#/tutorial/prepare>使用手册</a></p>
+<p>其他功能和特点暂不做介绍，本文仅阐述反连平台搭建</p>
+<h2 id="3-反连平台搭建"><a href="#3-反连平台搭建" class="headerlink" title="3. 反连平台搭建"></a>3. 反连平台搭建</h2><h3 id="3-1-准备"><a href="#3-1-准备" class="headerlink" title="3.1 准备"></a>3.1 准备</h3><p>可自定义DNS host的域名 \n</p>
+<p>一台VPS</p>
+<h3 id="3-2-VPS-配置"><a href="#3-2-VPS-配置" class="headerlink" title="3.2 VPS 配置"></a>3.2 VPS 配置</h3><p>开放UDP 53 端口 （此处必须为UDP协议，默认为TCP协议，注意避坑）<br>开放TCP 10001 端口 </p>
+<h3 id="3-3-域名解析配置"><a href="#3-3-域名解析配置" class="headerlink" title="3.3 域名解析配置"></a>3.3 域名解析配置</h3><p>增加ns1/ns2 解析到VPS</p>
+<img src="/2021/05/20/xray-fan-lian-ping-tai-da-jian/img.png" class="slug">
 
-<p>因为这是 Cloudflare 仅支持的端口，所以没办法把监听器设置成其他端口。</p>
-<p>尝试上线</p>
-<img src="/2021/05/27/yu-ming-dns-pei-zhi/img-6.png" class="slug">
+<h3 id="3-4-Xray-server-配置"><a href="#3-4-Xray-server-配置" class="headerlink" title="3.4 Xray-server 配置"></a>3.4 Xray-server 配置</h3><pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">reverse:
+  db_file_path: &quot;reverse.db&quot;   # 反连平台数据库文件位置, 这是一个 KV 数据库
+  token: &quot;你的密码&quot; # 反连平台认证的 Token, 独立部署时不能为空
+  http:
+    enabled: true
+    listen_ip: 0.0.0.0 
+    listen_port: &quot;10001&quot;
+    ip_header: &quot;&quot;                       
+  dns:
+    enabled: true
+    listen_ip: 0.0.0.0 
+    domain: &quot;example.com&quot;  # DNS 域名配置
+    is_domain_name_server: false    
+    resolve:                            # DNS 静态解析规则
+    - type: A                           # A, AAAA, TXT 三种
+      record: ns1
+      value: xxx.xx.xx.xx
+      ttl: 60
+    - type: A                           # A, AAAA, TXT 三种
+      record: ns2
+      value: xxx.xxx.xxx.xxx
+      ttl: 60
+      <span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h2 id="4-测试"><a href="#4-测试" class="headerlink" title="4. 测试"></a>4. 测试</h2><p>登录VPS</p>
+<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">.&#x2F;xray_linux_amd64 reverse  #启动<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p>访问listen_port对应端口<br><img src="img_1.png" alt="img_1.png"><br>输入token信息认证，参照使用说明进行验证<br>如下图，获取了当前用户的whoami信息<br><img src="img_2.png" alt="img_2.png"></p>
 
                 
             </div>
@@ -531,7 +541,7 @@
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="http://obelia.ml/2021/05/27/yu-ming-dns-pei-zhi/">http://obelia.ml/2021/05/27/yu-ming-dns-pei-zhi/</a>
+                    <a href="http://obelia.ml/2021/05/20/xray-fan-lian-ping-tai-da-jian/">http://obelia.ml/2021/05/20/xray-fan-lian-ping-tai-da-jian/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -571,10 +581,6 @@
                             
                                 <a href="/tags/%E9%85%8D%E7%BD%AE/">
                                     <span class="chip bg-color">配置</span>
-                                </a>
-                            
-                                <a href="/tags/%E6%9C%8D%E5%8A%A1%E5%99%A8/">
-                                    <span class="chip bg-color">服务器</span>
                                 </a>
                             
                         </div>
@@ -768,10 +774,9 @@
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="far fa-dot-circle"></i>&nbsp;本篇
-            </div>
+                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
             <div class="card">
                 <a href="/2021/05/27/yu-ming-dns-pei-zhi/">
                     <div class="card-image">
@@ -789,9 +794,9 @@
                         
                     </div>
                     <div class="publish-info">
-                            <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2021-05-27
-                            </span>
+                        <span class="publish-date">
+                            <i class="far fa-clock fa-fw icon-date"></i>2021-05-27
+                        </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-user fa-fw"></i>
@@ -800,7 +805,6 @@
                         </span>
                     </div>
                 </div>
-
                 
                 <div class="card-action article-tags">
                     
@@ -823,24 +827,24 @@
                 下一篇&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2021/05/20/xray-fan-lian-ping-tai-da-jian/">
+                <a href="/2021/05/01/msfvenmon-chang-yong-ming-ling-meterpreter-hou-shen-tou-chang-yong-ming-ling/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/15.jpg" class="responsive-img" alt="xray 反连平台搭建">
+                        <img src="/medias/featureimages/15.jpg" class="responsive-img" alt="Msfvenmon常用命令/Meterpreter后渗透常用命令">
                         
-                        <span class="card-title">xray 反连平台搭建</span>
+                        <span class="card-title">Msfvenmon常用命令/Meterpreter后渗透常用命令</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            Xray 反连平台搭建
+                            Meterpreter后渗透常用命令
                         
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2021-05-20
+                                <i class="far fa-clock fa-fw icon-date"></i>2021-05-01
                             </span>
                         <span class="publish-author">
                             
@@ -853,8 +857,12 @@
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/%E9%85%8D%E7%BD%AE/">
-                        <span class="chip bg-color">配置</span>
+                    <a href="/tags/%E5%B7%A5%E5%85%B7/">
+                        <span class="chip bg-color">工具</span>
+                    </a>
+                    
+                    <a href="/tags/%E5%86%85%E7%BD%91/">
+                        <span class="chip bg-color">内网</span>
                     </a>
                     
                 </div>

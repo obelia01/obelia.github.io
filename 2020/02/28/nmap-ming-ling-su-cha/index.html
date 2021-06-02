@@ -431,14 +431,14 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2020-01-28
+                    2020-02-28
                 </div>
                 
 
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
-                    2021-06-01
+                    2021-06-02
                 </div>
                 
 
@@ -524,7 +524,7 @@ nmap --script all 127.0.0.1 #所有脚本扫描
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="http://obelia.ml/2020/01/28/nmap-ming-ling-su-cha/">http://obelia.ml/2020/01/28/nmap-ming-ling-su-cha/</a>
+                    <a href="http://obelia.ml/2020/02/28/nmap-ming-ling-su-cha/">http://obelia.ml/2020/02/28/nmap-ming-ling-su-cha/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -761,24 +761,24 @@ nmap --script all 127.0.0.1 #所有脚本扫描
             <div class="article-badge left-badge text-color">
                 <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
             <div class="card">
-                <a href="/2020/05/27/wireshark-yu-fa/">
+                <a href="/2020/03/10/iterm2-pei-zhi/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/16.jpg" class="responsive-img" alt="Wireshark 语法">
+                        <img src="/medias/featureimages/6.jpg" class="responsive-img" alt="iterm2配置">
                         
-                        <span class="card-title">Wireshark 语法</span>
+                        <span class="card-title">iterm2配置</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            Wireshark语法
+                            ITerm2 配置
                         
                     </div>
                     <div class="publish-info">
                         <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2020-05-27
+                            <i class="far fa-clock fa-fw icon-date"></i>2020-03-10
                         </span>
                         <span class="publish-author">
                             
@@ -791,8 +791,12 @@ nmap --script all 127.0.0.1 #所有脚本扫描
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/%E5%B7%A5%E5%85%B7/">
-                        <span class="chip bg-color">工具</span>
+                    <a href="/tags/%E9%85%8D%E7%BD%AE/">
+                        <span class="chip bg-color">配置</span>
+                    </a>
+                    
+                    <a href="/tags/%E6%9C%8D%E5%8A%A1%E5%99%A8/">
+                        <span class="chip bg-color">服务器</span>
                     </a>
                     
                 </div>
@@ -854,6 +858,43 @@ nmap --script all 127.0.0.1 #所有脚本扫描
 
 </div>
 
+
+<script>
+    $('#articleContent').on('copy', function (e) {
+        // IE8 or earlier browser is 'undefined'
+        if (typeof window.getSelection === 'undefined') return;
+
+        var selection = window.getSelection();
+        // if the selection is short let's not annoy our users.
+        if (('' + selection).length < Number.parseInt('120')) {
+            return;
+        }
+
+        // create a div outside of the visible area and fill it with the selected text.
+        var bodyElement = document.getElementsByTagName('body')[0];
+        var newdiv = document.createElement('div');
+        newdiv.style.position = 'absolute';
+        newdiv.style.left = '-99999px';
+        bodyElement.appendChild(newdiv);
+        newdiv.appendChild(selection.getRangeAt(0).cloneContents());
+
+        // we need a <pre> tag workaround.
+        // otherwise the text inside "pre" loses all the line breaks!
+        if (selection.getRangeAt(0).commonAncestorContainer.nodeName === 'PRE') {
+            newdiv.innerHTML = "<pre>" + newdiv.innerHTML + "</pre>";
+        }
+
+        var url = document.location.href;
+        newdiv.innerHTML += '<br />'
+            + '来源: obelia<br />'
+            + '文章作者: obelia<br />'
+            + '文章链接: <a href="' + url + '">' + url + '</a><br />'
+            + '本文章著作权归作者所有，任何形式的转载都请注明出处。';
+
+        selection.selectAllChildren(newdiv);
+        window.setTimeout(function () {bodyElement.removeChild(newdiv);}, 200);
+    });
+</script>
 
 
 <!-- 代码块功能依赖 -->
@@ -1046,7 +1087,7 @@ nmap --script all 127.0.0.1 #所有脚本扫描
             <br>
             
                 &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                        class="white-color">13.8k</span>
+                        class="white-color">14.2k</span>
             
             
             
@@ -1261,6 +1302,8 @@ $(function () {
 
     
 
+    
+    <script type="text/javascript" src="/libs/background/ribbon-dynamic.js" async="async"></script>
     
 
     

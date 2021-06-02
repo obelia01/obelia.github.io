@@ -805,24 +805,24 @@ bootp
             <div class="article-badge left-badge text-color">
                 <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
             <div class="card">
-                <a href="/2020/07/12/sql-zhu-ru-ji-chu/">
+                <a href="/2020/07/01/nei-wang-xin-xi-shou-ji/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/7.jpg" class="responsive-img" alt="SQL注入基础">
+                        <img src="/medias/featureimages/18.jpg" class="responsive-img" alt="内网信息收集">
                         
-                        <span class="card-title">SQL注入基础</span>
+                        <span class="card-title">内网信息收集</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            1.SQL注入
+                            内网信息收集
                         
                     </div>
                     <div class="publish-info">
                         <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2020-07-12
+                            <i class="far fa-clock fa-fw icon-date"></i>2020-07-01
                         </span>
                         <span class="publish-author">
                             
@@ -835,12 +835,12 @@ bootp
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/WEB/">
-                        <span class="chip bg-color">WEB</span>
+                    <a href="/tags/%E5%86%85%E7%BD%91/">
+                        <span class="chip bg-color">内网</span>
                     </a>
                     
-                    <a href="/tags/top10/">
-                        <span class="chip bg-color">top10</span>
+                    <a href="/tags/%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86/">
+                        <span class="chip bg-color">信息收集</span>
                     </a>
                     
                 </div>
@@ -854,24 +854,24 @@ bootp
                 下一篇&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2020/01/28/nmap-ming-ling-su-cha/">
+                <a href="/2020/03/10/iterm2-pei-zhi/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/23.jpg" class="responsive-img" alt="Nmap 命令速查">
+                        <img src="/medias/featureimages/6.jpg" class="responsive-img" alt="iterm2配置">
                         
-                        <span class="card-title">Nmap 命令速查</span>
+                        <span class="card-title">iterm2配置</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            Nmap 命令详解
+                            ITerm2 配置
                         
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2020-01-28
+                                <i class="far fa-clock fa-fw icon-date"></i>2020-03-10
                             </span>
                         <span class="publish-author">
                             
@@ -884,8 +884,12 @@ bootp
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/%E5%B7%A5%E5%85%B7/">
-                        <span class="chip bg-color">工具</span>
+                    <a href="/tags/%E9%85%8D%E7%BD%AE/">
+                        <span class="chip bg-color">配置</span>
+                    </a>
+                    
+                    <a href="/tags/%E6%9C%8D%E5%8A%A1%E5%99%A8/">
+                        <span class="chip bg-color">服务器</span>
                     </a>
                     
                 </div>
@@ -898,6 +902,43 @@ bootp
 
 </div>
 
+
+<script>
+    $('#articleContent').on('copy', function (e) {
+        // IE8 or earlier browser is 'undefined'
+        if (typeof window.getSelection === 'undefined') return;
+
+        var selection = window.getSelection();
+        // if the selection is short let's not annoy our users.
+        if (('' + selection).length < Number.parseInt('120')) {
+            return;
+        }
+
+        // create a div outside of the visible area and fill it with the selected text.
+        var bodyElement = document.getElementsByTagName('body')[0];
+        var newdiv = document.createElement('div');
+        newdiv.style.position = 'absolute';
+        newdiv.style.left = '-99999px';
+        bodyElement.appendChild(newdiv);
+        newdiv.appendChild(selection.getRangeAt(0).cloneContents());
+
+        // we need a <pre> tag workaround.
+        // otherwise the text inside "pre" loses all the line breaks!
+        if (selection.getRangeAt(0).commonAncestorContainer.nodeName === 'PRE') {
+            newdiv.innerHTML = "<pre>" + newdiv.innerHTML + "</pre>";
+        }
+
+        var url = document.location.href;
+        newdiv.innerHTML += '<br />'
+            + '来源: obelia<br />'
+            + '文章作者: obelia<br />'
+            + '文章链接: <a href="' + url + '">' + url + '</a><br />'
+            + '本文章著作权归作者所有，任何形式的转载都请注明出处。';
+
+        selection.selectAllChildren(newdiv);
+        window.setTimeout(function () {bodyElement.removeChild(newdiv);}, 200);
+    });
+</script>
 
 
 <!-- 代码块功能依赖 -->
@@ -1090,7 +1131,7 @@ bootp
             <br>
             
                 &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                        class="white-color">13.8k</span>
+                        class="white-color">14.2k</span>
             
             
             
@@ -1305,6 +1346,8 @@ $(function () {
 
     
 
+    
+    <script type="text/javascript" src="/libs/background/ribbon-dynamic.js" async="async"></script>
     
 
     

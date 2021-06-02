@@ -4,7 +4,7 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="内网信息收集, obelia">
+    <meta name="keywords" content="iterm2配置, obelia">
     <meta name="description" content="菜🐔一枚，大哥带带？">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -16,7 +16,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>内网信息收集 | obelia</title>
+    <title>iterm2配置 | obelia</title>
     <link rel="icon" type="image/png" href="/28.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
@@ -294,12 +294,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/18.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/6.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">内网信息收集</h1>
+                    <h1 class="description center-align post-title">iterm2配置</h1>
                 </div>
             </div>
         </div>
@@ -415,12 +415,12 @@
                     
                     <div class="article-tag">
                         
-                            <a href="/tags/%E5%86%85%E7%BD%91/">
-                                <span class="chip bg-color">内网</span>
+                            <a href="/tags/%E9%85%8D%E7%BD%AE/">
+                                <span class="chip bg-color">配置</span>
                             </a>
                         
-                            <a href="/tags/%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86/">
-                                <span class="chip bg-color">信息收集</span>
+                            <a href="/tags/%E6%9C%8D%E5%8A%A1%E5%99%A8/">
+                                <span class="chip bg-color">服务器</span>
                             </a>
                         
                     </div>
@@ -435,28 +435,28 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2021-04-20
+                    2020-03-10
                 </div>
                 
 
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
-                    2021-06-01
+                    2021-06-02
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    1.7k
+                    962
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    7 分
+                    4 分
                 </div>
                 
 
@@ -479,195 +479,101 @@
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h1 id="内网信息收集"><a href="#内网信息收集" class="headerlink" title="内网信息收集"></a>内网信息收集</h1><span id="more"></span>
-<h2 id="1-WMIC-基础语法"><a href="#1-WMIC-基础语法" class="headerlink" title="1.WMIC 基础语法"></a>1.WMIC 基础语法</h2><h3 id="1-1-语法介绍"><a href="#1-1-语法介绍" class="headerlink" title="1.1 语法介绍"></a>1.1 语法介绍</h3><p>wmic命令行是用来管理WMI系统的， 算是win的插件 ， 用户可以使用 WMI 管理本地和远程计算机。</p>
-<p>WMI在渗透测试中不需要下载和安装，是Windows系统自带功能，和cmd一样用</p>
-<p>在整个运行过程都在计算机内存中发生，不会留下任何操作痕迹。</p>
-<h3 id="1-2-简单实用"><a href="#1-2-简单实用" class="headerlink" title="1.2 简单实用"></a>1.2 简单实用</h3><h4 id="1-2-1-查看帮助"><a href="#1-2-1-查看帮助" class="headerlink" title="1.2.1 查看帮助"></a>1.2.1 查看帮助</h4><pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">wmic &#x2F;?  #查看全局命令
-process &#x2F;? #进程管理帮助
-wmic process get &#x2F;?   #属性获取操作帮助<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+                <h1 id="ITerm2-配置"><a href="#ITerm2-配置" class="headerlink" title="ITerm2 配置"></a>ITerm2 配置</h1><span id="more"></span>
+<h2 id="1-安装oh-my-zsh"><a href="#1-安装oh-my-zsh" class="headerlink" title="1 安装oh-my-zsh"></a>1 安装oh-my-zsh</h2><h3 id="1-1-查看系统存在几个shell"><a href="#1-1-查看系统存在几个shell" class="headerlink" title="1.1 查看系统存在几个shell"></a>1.1 查看系统存在几个shell</h3><pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">cat &#x2F;etc&#x2F;shell<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 
-<h4 id="1-2-2-常用命令"><a href="#1-2-2-常用命令" class="headerlink" title="1.2.2 常用命令"></a>1.2.2 常用命令</h4><pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">#获取系统正在运行的进程、进程文件的路径、进程ID
-wmic process get caption,executablepath,processid
+<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell"># List of acceptable shells for chpass(1).
+# Ftpd will not allow users to connect who are not using
+# one of these shells.
 
-#获取系统当前正在运行的服务
-wmic service where (state&#x3D;&#39;runing&#39;) get name,processid,pathname,startmode,caption
+&#x2F;bin&#x2F;bash
+&#x2F;bin&#x2F;csh
+&#x2F;bin&#x2F;dash
+&#x2F;bin&#x2F;ksh
+&#x2F;bin&#x2F;sh
+&#x2F;bin&#x2F;tcsh
+&#x2F;bin&#x2F;zsh<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
-#查看服务信息
-wmic service list brief
+<p>bash是mac中terminal自带的shell，把它换成zsh，这个的功能要多得多。拥有语法高亮，命令行tab补全，自动提示符，显示Git仓库状态等功能</p>
+<p>设置默认shell</p>
+<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">chsh -s &#x2F;bin&#x2F;zsh<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 
-#获取杀软详情
-wmic &#x2F;Node:localhost &#x2F;namespace:\\root\securitycenter2 path antivirusproduct GET displayName,productState,pathToSignedProductExe &#x2F;Format:List
+<h3 id="1-2-安装oh-my-zsh"><a href="#1-2-安装oh-my-zsh" class="headerlink" title="1.2 安装oh-my-zsh"></a>1.2 安装oh-my-zsh</h3><pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">https:&#x2F;&#x2F;github.com&#x2F;ohmyzsh&#x2F;ohmyzsh #github地址<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 
-#获取补丁信息
-wmic qfe get Caption,Description,HotFixID,InstalledOn
+<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">cp -r ohmyzsh ~&#x2F;.oh-my-zsh
+## 复制.zshrc
+cp ohmyzsh&#x2F;templates&#x2F;zshrc.zsh-template ~&#x2F;.zshrc
+## shell换成zsh
+chsh -s &#x2F;bin&#x2F;zsh #安装好之后，需要把 Zsh 设置为当前用户的默认 Shell（这样新建标签的时候才会使用 Zsh）<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
-#判断是否是虚拟机
-wmic onboarddevice get Description,DeviceType,Enabled,Status &#x2F;format:list
+<p>之前.zshrc 配置了mvn,记得重新加上</p>
+<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">MAVEN_HOME&#x3D;&#x2F;usr&#x2F;local&#x2F;apache-maven-3.6.3
+PATH&#x3D;$MAVEN_HOME&#x2F;bin:$PATH
+export MAVEN_HOME
+export PATH<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
 
-#安装了那些软件
-wmic product get name,version
+<p>主题修改为<code>ZSH_THEME=&quot;agnoster&quot;</code></p>
+<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">vim ~&#x2F;.zshrc<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 
-#获取本地安装程序
-wmic &#x2F;NAMESPACE:&quot;\\root\CIMV2&quot; PATH Win32_Product get name &#x2F;FORMAT:table
+<img src="/2020/03/10/iterm2-pei-zhi/img-1.png" class="slug">
+<!--`agnoster`是比较常用的 zsh 主题之一，你可以挑选你喜欢的主题，zsh 主题列表：[https://github.com/robbyrussell/oh-my-zsh/wiki/themes](https://links.jianshu.com/go?to=https%3A%2F%2Fgithub.com%2Frobbyrussell%2Foh-my-zsh%2Fwiki%2Fthemes)-->
 
-#系统环境变量
-wmic environment get Description,VariableValue
+<h3 id="1-3-配置Meslo字体"><a href="#1-3-配置Meslo字体" class="headerlink" title="1.3 配置Meslo字体"></a>1.3 配置Meslo字体</h3><p>使用上面的主题，需要 Meslo 字体支持，要不然会出现乱码的情况，字体下载地址：<a target="_blank" rel="noopener" href="https://links.jianshu.com/go?to=https://github.com/powerline/fonts/blob/master/Meslo%20Slashed/Meslo%20LG%20M%20Regular%20for%20Powerline.ttf">Meslo LG M Regular for Powerline.ttf</a></p>
+<p>下载好之后，找到对应的字体,直接在 Mac OS 中安装即可。</p>
+<p>然后打开 iTerm2，按<code>Command + ,</code>键，打开 Preferences 配置界面，然后<code>Profiles -&gt; Text -&gt; Font -&gt; Chanage Font</code>，选择 Meslo LG M Regular for Powerline 字体。</p>
+<h3 id="1-4-声明高亮"><a href="#1-4-声明高亮" class="headerlink" title="1.4 声明高亮"></a>1.4 声明高亮</h3><p>特殊命令和错误命令，会有高亮显示。</p>
+<p>使用 Homebrew 安装：</p>
+<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">$ brew install zsh-syntax-highlighting<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 
-#计算机品牌，型号、名称、名字
-wmic computersystem get Name,Domain,Manufacturer,Model,Username,Roles &#x2F;format:list
+<p>安装成功之后，编辑vim ~/.zshrc文件，在最后一行增加下面配置：</p>
+<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">source &#x2F;usr&#x2F;local&#x2F;share&#x2F;zsh-syntax-highlighting&#x2F;zsh-syntax-highlighting.zsh<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 
-#获取系统驱动情况
-wmic sysdriver get Caption,Name,PathName,ServiceType,State,Status &#x2F;format:list
-#查看驱动器
-wmic logicaldisk get caption,description,providername  
+<h3 id="1-5-自动建议填充"><a href="#1-5-自动建议填充" class="headerlink" title="1.5 自动建议填充"></a>1.5 自动建议填充</h3><p>这个功能是非常实用的，可以方便我们快速的敲命令</p>
+<p>配置步骤，先克隆zsh-autosuggestions项目，到指定目录：</p>
+<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">https:&#x2F;&#x2F;github.com&#x2F;zsh-users&#x2F;zsh-autosuggestions # github地址
 
-#查看当前操作系统
-wmic OS get Caption,CSDVersion,OSArchitecture,Version
+mv zsh-autosuggestions ~&#x2F;.oh-my-zsh&#x2F;custom&#x2F;plugins&#x2F;zsh-autosuggestions<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
 
-#查看开机自启动
-wmic startup get caption,command
+<p>然后编辑<code>vim ~/.zshrc</code>文件，找到plugins配置，增加<code>zsh-autosuggestions</code>插件</p>
+<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">vim ~&#x2F;.zshrc<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 
-#查看共享文件
-wmic share get name,path,status<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<img src="/2020/03/10/iterm2-pei-zhi/img-2.png" class="slug">
+<h3 id="1-6-iTerm2-快速隐藏和显示窗体"><a href="#1-6-iTerm2-快速隐藏和显示窗体" class="headerlink" title="1.6 iTerm2 快速隐藏和显示窗体"></a>1.6 iTerm2 快速隐藏和显示窗体</h3><p>打开 iTerm2，按<code>Command + ,</code>键，打开 Preferences 配置界面，然后Profiles → Keys →Hotkey，自定义一个快捷键就可以了。</p>
+<img src="/2020/03/10/iterm2-pei-zhi/img-3.png" class="slug">
+<h3 id="1-7-iTerm2-隐藏用户名和主机名"><a href="#1-7-iTerm2-隐藏用户名和主机名" class="headerlink" title="1.7 iTerm2 隐藏用户名和主机名"></a>1.7 iTerm2 隐藏用户名和主机名</h3><p>有时候我们的用户名和主机名太长，终端显示的时候会很不好看，我们可以手动去除。</p>
+<p>编辑<code>vim ~/.zshrc</code>文件，增加<code>DEFAULT_USER=&quot;SKong&quot;</code>配置.</p>
+<p>但是: 我的电脑没生效,至今未找到原因~~~<br><code>补充:已经找到原因,这个地方应该设置为: DEFAULT_USER=&quot;你电脑的用户名&quot;</code><br>比如:我的电脑用户名为pactepacterara,则DEFAULT_USER=”pactepacterara”<br>感谢网友<a target="_blank" rel="noopener" href="https://blog.csdn.net/u/c57aa48a99b8">码渣</a>!</p>
+<img src="/2020/03/10/iterm2-pei-zhi/img-4.png" class="slug">
+<h3 id="1-8-Iterm2-快捷指令"><a href="#1-8-Iterm2-快捷指令" class="headerlink" title="1.8 Iterm2 快捷指令"></a>1.8 Iterm2 快捷指令</h3><p>在iterm2中，选中某个路径或者某个词汇，iterm2就自动复制了,很方便。</p>
+<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">command + enter 进入与返回全屏模式
+command + t 新建标签
+command + w 关闭标签
+command + 数字 command + 左右方向键    切换标签
+command + enter 切换全屏
+command + f 查找
+command + d 水平分屏
+command + shift + d 垂直分屏
+command + option + 方向键 command + [ 或 command + ]    切换屏幕
+command + ; 查看历史命令
+command + shift + h 查看剪贴板历史
+ctrl + u    清除当前行
+ctrl + l    清屏
+ctrl + a    到行首
+ctrl + e    到行尾
+ctrl + f&#x2F;b  前进后退
+ctrl + p    上一条命令
+ctrl + r    搜索命令历史<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
-<h4 id="1-2-3-操作用户"><a href="#1-2-3-操作用户" class="headerlink" title="1.2.3 操作用户"></a>1.2.3 操作用户</h4><pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">#搜索用户账户
-wmic useraccount list brief
-#锁定用户账号
-wmic useraccount where name&#x3D;&#39;hacker&#39; set disabled&#x3D;false
-#用户账号重命名
-wmic useraccount where name&#x3D;&#39;hacker&#39; rename hacker
-#限制用户修改密码
-wmic useraccount where name&#x3D;&#39;hacker&#39; set passwordchangeable&#x3D;false
-#搜索登录用户
-wmic logon list brief
-#搜索计算机域控制器
-wmic ntdomain list brief<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h3 id="1-9-卸载oh-my-zsh"><a href="#1-9-卸载oh-my-zsh" class="headerlink" title="1.9 卸载oh-my-zsh"></a>1.9 卸载oh-my-zsh</h3><p>进入到.oh-my-zsh/tools目录,依次执行</p>
+<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">$cd .oh-my-zsh&#x2F;tools
+chmod +x uninstall.sh
+.&#x2F;uninstall.sh
+rm -rif .zshrc<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
 
-<h4 id="1-2-4-操作服务"><a href="#1-2-4-操作服务" class="headerlink" title="1.2.4 操作服务"></a>1.2.4 操作服务</h4><pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">#卸载和重装程序
-wmic product where &quot;name like &#39;%forit%&#39;&quot; get name
-
-#停止运行服务,主要是关闭杀软
-Wmic process where name&#x3D;&quot;XXX.exe&quot; call terminate
-wmic process where name&#x3D;&quot;explorer.exe&quot; call terminate<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-
-<h4 id="1-2-5-清理日志"><a href="#1-2-5-清理日志" class="headerlink" title="1.2.5 清理日志"></a>1.2.5 清理日志</h4><pre class="line-numbers language-sh" data-language="sh"><code class="language-sh">wmic nteventlog where filename&#x3D;&#39;system&#39; cleareventlog<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-
-<h2 id="2-本机信息"><a href="#2-本机信息" class="headerlink" title="2.  本机信息"></a>2.  本机信息</h2><h3 id="2-1-介绍"><a href="#2-1-介绍" class="headerlink" title="2.1 介绍"></a>2.1 介绍</h3><p>当主机上线时候，第一件事就是搜集有用信息，判断这是什么系统、找杀软、找漏洞来提权、判断内网等等。</p>
-<p>而不是无头苍蝇，上来就乱搞一通。</p>
-<h3 id="2-2-命令"><a href="#2-2-命令" class="headerlink" title="2.2 命令"></a>2.2 命令</h3><h4 id="2-2-1-系统与配置信息"><a href="#2-2-1-系统与配置信息" class="headerlink" title="2.2.1 系统与配置信息"></a>2.2.1 系统与配置信息</h4><pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">#主机信息
-hostname 
-
-#查看当前操作系统，重点查看版本、位数、补丁信息
-systeminfo 
-systeminfo | findstr &#x2F;B &#x2F;C:&quot;Os Name&quot; &#x2F;C:&quot;OS Version&quot;
-
-#查看系统架构
-echo %PROCESSOR_ARCHITECTURE%
-
-#查看驱动情况
-DRIVERQUERY
-#查看磁盘驱动器，有几个磁盘
-wmic logicaldisk get caption,description,providername
-
-#host 信息
-type C:\\windows\system32\drivers\etc\hosts
-
-#如果安装iis服务器可以查看iis配置信息
-type C:\\windows\system32\inetsrv\config\applicationHost.config
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-
-<h4 id="2-2-2-软件与进程信息"><a href="#2-2-2-软件与进程信息" class="headerlink" title="2.2.2 软件与进程信息"></a>2.2.2 软件与进程信息</h4><pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">#主要是看安装软件和版本信息，查响应版本漏洞
-wmic product get name,version
-#查看当前进程列表和进程用户，分析软件、邮件客户端、VPN和杀软等
-tasklist &#x2F;svc
-wmic process list brief
-#查看AV安装情况
-wmic &#x2F;Node:localhost &#x2F;Namespace:\\root\SecurityCenter2 Path AntiVirusProduct Get displayName &#x2F;Format:List
-#已启动程序的信息，查看开机自启动
-wmic startup get command,caption<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-
-<h4 id="2-2-3-服务信息"><a href="#2-2-3-服务信息" class="headerlink" title="2.2.3 服务信息"></a>2.2.3 服务信息</h4><pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">#查看启动的服务
-net start
-#查看服务信息
-q
-#查询服务的详细信息
-sc querys<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-
-<h4 id="2-2-4-计划任务"><a href="#2-2-4-计划任务" class="headerlink" title="2.2.4 计划任务"></a>2.2.4 计划任务</h4><pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">schtasks #计划任务
-参考参数
-&#x2F;Create  # 创建计划任务
-&#x2F;Delete  #删除计划任务
-&#x2F;Query #显示所有的计划任务
-&#x2F;Change  #更改计划任务
-&#x2F;Run。# 运行计划任务
-&#x2F;End。#终止当前计划任务
-&#x2F;ShowSid  #显示与计划任务名称相应的安全标识符
-&#x2F;？  #显示此帮助消息
-
-#查询所有的计划任务
-schtasks &#x2F;query &#x2F;fo list &#x2F;v
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-
-<h4 id="2-2-5-用户信息"><a href="#2-2-5-用户信息" class="headerlink" title="2.2.5 用户信息"></a>2.2.5 用户信息</h4><pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">#查看主机开机时间
-net statistics workstation
-#查询已经在线用户，注意管理员是否在线
-query user || qwinsta
-query session 
-#查看当前用户权限，主要是判断现在是本地平台用户、本地管理员、还是域内用户
-whoami
-whoami &#x2F;all
-# 查看本地用户列表，推测命名规则
-net user
-#查看所有组名，
-net localgroup
-#然后可以查看指定组中的成员列表，比如查询本地管理员组看到本地一个管理员，还一个域的Domainadmins为域内机器的本地管理员用户
-net localgroup administrators<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-
-<h4 id="2-2-6-网络配置信息"><a href="#2-2-6-网络配置信息" class="headerlink" title="2.2.6 网络配置信息"></a>2.2.6 网络配置信息</h4><pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">#查看网络信息
-ipconfig &#x2F;all
-#查看路由器和路由表，可以判断内网的地址段
-route print
-arp -A
-#查看主机共享列表，可访问的共享列表
-net share
-wmic share get name,path,status
-#查看主机开放端口以及链接状态，TCP&#x2F;UDP
-netstat -ano
-netstat -anob #查看对应的程序，需要权限
-
-#通过注册表查看代理情况
-REG QUERY &quot;HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Internet Settings&quot;
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-
-<h2 id="3域信息收集"><a href="#3域信息收集" class="headerlink" title="3域信息收集"></a>3域信息收集</h2><h3 id="3-1-域内信息收集"><a href="#3-1-域内信息收集" class="headerlink" title="3.1 域内信息收集"></a>3.1 域内信息收集</h3><h4 id="3-1-1主机信息收集"><a href="#3-1-1主机信息收集" class="headerlink" title="3.1.1主机信息收集"></a>3.1.1主机信息收集</h4><pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">shell systeminfo #查看主机信息，存在域信息<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-
-<img src="/2021/04/20/nei-wang-xin-xi-shou-ji/img-1.png" class="slug">
-<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">#获取域名ip
-shell nslookup god.org
-ping god.org 
-
-#查询当前会话登陆的是域还是本地工作组，是域的话可以查DNS和域用户信息
-shell config workstation<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<img src="/2021/04/20/nei-wang-xin-xi-shou-ji/img-2.png" class="slug">
-<h4 id="3-1-2域基本信息查询"><a href="#3-1-2域基本信息查询" class="headerlink" title="3.1.2域基本信息查询"></a>3.1.2域基本信息查询</h4><pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">shell net view #查看工作组内主机
-shell net view&#x2F;domain #查看有几个域
-shell net view&#x2F;domain：god.org  #查看指定域内主机
-shell net accounts &#x2F;domain   #获取域密码策略
-shell nltest &#x2F;domain_trusts #获取域信任信息<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-
-<h4 id="3-1-3-域内用户和管理员信息"><a href="#3-1-3-域内用户和管理员信息" class="headerlink" title="3.1.3.域内用户和管理员信息"></a>3.1.3.域内用户和管理员信息</h4><pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">net user &#x2F;domain #查询域内用户列表
-net user Administrator &#x2F;domamin # 查询指定域用户信息
-net group &#x2F;doamin  #查看域内的组，判断每个组的功能
-net group &quot;domain admins&quot; &#x2F;domain #查询域管理员组内的用户
-net group &quot;Domain computers&quot; &#x2F;domain  #查询域成员计算机列表，对应的是主机的机器账户<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-
-<h4 id="3-1-4判断主域（域控）"><a href="#3-1-4判断主域（域控）" class="headerlink" title="3.1.4判断主域（域控）"></a>3.1.4判断主域（域控）</h4><pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">net time &#x2F;domain #域服务器一般会作为时间服务器使用，就可以获得域控地址存在域，但当前用户不是域用户会拒绝访问；是域用户就获得相应地址；显示找不到域则是工作组环境
-ping DC.domain.test #通过ping获取域控
-nltest &#x2F;DCLIST:domain
-netdom query pdc
-net group &quot;Domain controllers&quot; &#x2F;domain # 查看域控制器的机器账户<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-
+<h2 id="关于-oh-my-zsh-提示检测到不安全的完成相关目录"><a href="#关于-oh-my-zsh-提示检测到不安全的完成相关目录" class="headerlink" title="关于[oh-my-zsh] 提示检测到不安全的完成相关目录"></a>关于[oh-my-zsh] 提示检测到不安全的完成相关目录</h2><ol>
+<li>在.zshrc文件的第一行添加 <code>ZSH_DISABLE_COMPFIX=true</code></li>
+</ol>
+<p>参考链接：<a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_36955294/article/details/109340448?utm_term=iterm2%E9%85%8D%E7%BD%AE&amp;utm_medium=distribute.pc_aggpage_search_result.none-task-blog-2~all~sobaiduweb~default-6-109340448&amp;spm=3001.4430">https://blog.csdn.net/qq_36955294/article/details/109340448?utm_term=iterm2%E9%85%8D%E7%BD%AE&amp;utm_medium=distribute.pc_aggpage_search_result.none-task-blog-2~all~sobaiduweb~default-6-109340448&amp;spm=3001.4430</a></p>
 
                 
             </div>
@@ -694,7 +600,7 @@ net group &quot;Domain controllers&quot; &#x2F;domain # 查看域控制器的机
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="http://obelia.ml/2021/04/20/nei-wang-xin-xi-shou-ji/">http://obelia.ml/2021/04/20/nei-wang-xin-xi-shou-ji/</a>
+                    <a href="http://obelia.ml/2020/03/10/iterm2-pei-zhi/">http://obelia.ml/2020/03/10/iterm2-pei-zhi/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -732,12 +638,12 @@ net group &quot;Domain controllers&quot; &#x2F;domain # 查看域控制器的机
                     
                         <div class="article-tag">
                             
-                                <a href="/tags/%E5%86%85%E7%BD%91/">
-                                    <span class="chip bg-color">内网</span>
+                                <a href="/tags/%E9%85%8D%E7%BD%AE/">
+                                    <span class="chip bg-color">配置</span>
                                 </a>
                             
-                                <a href="/tags/%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86/">
-                                    <span class="chip bg-color">信息收集</span>
+                                <a href="/tags/%E6%9C%8D%E5%8A%A1%E5%99%A8/">
+                                    <span class="chip bg-color">服务器</span>
                                 </a>
                             
                         </div>
@@ -935,24 +841,24 @@ net group &quot;Domain controllers&quot; &#x2F;domain # 查看域控制器的机
             <div class="article-badge left-badge text-color">
                 <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
             <div class="card">
-                <a href="/2021/05/27/yu-ming-dns-pei-zhi/">
+                <a href="/2020/05/27/wireshark-yu-fa/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/7.jpg" class="responsive-img" alt="域名/DNS 配置">
+                        <img src="/medias/featureimages/16.jpg" class="responsive-img" alt="Wireshark 语法">
                         
-                        <span class="card-title">域名/DNS 配置</span>
+                        <span class="card-title">Wireshark 语法</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            域名/DNS 相关配置
+                            Wireshark语法
                         
                     </div>
                     <div class="publish-info">
                         <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2021-05-27
+                            <i class="far fa-clock fa-fw icon-date"></i>2020-05-27
                         </span>
                         <span class="publish-author">
                             
@@ -965,12 +871,8 @@ net group &quot;Domain controllers&quot; &#x2F;domain # 查看域控制器的机
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/%E9%85%8D%E7%BD%AE/">
-                        <span class="chip bg-color">配置</span>
-                    </a>
-                    
-                    <a href="/tags/%E6%9C%8D%E5%8A%A1%E5%99%A8/">
-                        <span class="chip bg-color">服务器</span>
+                    <a href="/tags/%E5%B7%A5%E5%85%B7/">
+                        <span class="chip bg-color">工具</span>
                     </a>
                     
                 </div>
@@ -984,24 +886,24 @@ net group &quot;Domain controllers&quot; &#x2F;domain # 查看域控制器的机
                 下一篇&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2021/03/27/iterm2-pei-zhi/">
+                <a href="/2020/02/28/nmap-ming-ling-su-cha/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/6.jpg" class="responsive-img" alt="iterm2配置">
+                        <img src="/medias/featureimages/23.jpg" class="responsive-img" alt="Nmap 命令速查">
                         
-                        <span class="card-title">iterm2配置</span>
+                        <span class="card-title">Nmap 命令速查</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            ITerm2 配置
+                            Nmap 命令详解
                         
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2021-03-27
+                                <i class="far fa-clock fa-fw icon-date"></i>2020-02-28
                             </span>
                         <span class="publish-author">
                             
@@ -1014,12 +916,8 @@ net group &quot;Domain controllers&quot; &#x2F;domain # 查看域控制器的机
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/%E9%85%8D%E7%BD%AE/">
-                        <span class="chip bg-color">配置</span>
-                    </a>
-                    
-                    <a href="/tags/%E6%9C%8D%E5%8A%A1%E5%99%A8/">
-                        <span class="chip bg-color">服务器</span>
+                    <a href="/tags/%E5%B7%A5%E5%85%B7/">
+                        <span class="chip bg-color">工具</span>
                     </a>
                     
                 </div>
@@ -1032,6 +930,43 @@ net group &quot;Domain controllers&quot; &#x2F;domain # 查看域控制器的机
 
 </div>
 
+
+<script>
+    $('#articleContent').on('copy', function (e) {
+        // IE8 or earlier browser is 'undefined'
+        if (typeof window.getSelection === 'undefined') return;
+
+        var selection = window.getSelection();
+        // if the selection is short let's not annoy our users.
+        if (('' + selection).length < Number.parseInt('120')) {
+            return;
+        }
+
+        // create a div outside of the visible area and fill it with the selected text.
+        var bodyElement = document.getElementsByTagName('body')[0];
+        var newdiv = document.createElement('div');
+        newdiv.style.position = 'absolute';
+        newdiv.style.left = '-99999px';
+        bodyElement.appendChild(newdiv);
+        newdiv.appendChild(selection.getRangeAt(0).cloneContents());
+
+        // we need a <pre> tag workaround.
+        // otherwise the text inside "pre" loses all the line breaks!
+        if (selection.getRangeAt(0).commonAncestorContainer.nodeName === 'PRE') {
+            newdiv.innerHTML = "<pre>" + newdiv.innerHTML + "</pre>";
+        }
+
+        var url = document.location.href;
+        newdiv.innerHTML += '<br />'
+            + '来源: obelia<br />'
+            + '文章作者: obelia<br />'
+            + '文章链接: <a href="' + url + '">' + url + '</a><br />'
+            + '本文章著作权归作者所有，任何形式的转载都请注明出处。';
+
+        selection.selectAllChildren(newdiv);
+        window.setTimeout(function () {bodyElement.removeChild(newdiv);}, 200);
+    });
+</script>
 
 
 <!-- 代码块功能依赖 -->
@@ -1224,7 +1159,7 @@ net group &quot;Domain controllers&quot; &#x2F;domain # 查看域控制器的机
             <br>
             
                 &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                        class="white-color">13.8k</span>
+                        class="white-color">14.2k</span>
             
             
             
@@ -1439,6 +1374,8 @@ $(function () {
 
     
 
+    
+    <script type="text/javascript" src="/libs/background/ribbon-dynamic.js" async="async"></script>
     
 
     

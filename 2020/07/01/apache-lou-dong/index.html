@@ -435,14 +435,14 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2021-06-01
+                    2020-07-01
                 </div>
                 
 
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
-                    2021-06-01
+                    2021-06-02
                 </div>
                 
 
@@ -482,11 +482,11 @@
                 <h1 id="Apache漏洞"><a href="#Apache漏洞" class="headerlink" title="Apache漏洞"></a>Apache漏洞</h1><span id="more"></span>
 <h2 id="1-1-Apache-HTTPD-换行解析漏洞（CVE-2017-15715）"><a href="#1-1-Apache-HTTPD-换行解析漏洞（CVE-2017-15715）" class="headerlink" title="1.1 Apache HTTPD 换行解析漏洞（CVE-2017-15715）"></a>1.1 Apache HTTPD 换行解析漏洞（CVE-2017-15715）</h2><h3 id="1-漏洞原理"><a href="#1-漏洞原理" class="headerlink" title="1)漏洞原理"></a>1)漏洞原理</h3><p>此漏洞的出现是由于 apache 在修复第一个后缀名解析漏洞时，用正则来匹配后缀。在解析 php 时 xxx.php\x0A 将被按照 php 后缀进行解析，导致绕过一些服务器的安全策略</p>
 <h3 id="2-漏洞复现"><a href="#2-漏洞复现" class="headerlink" title="2)漏洞复现"></a>2)漏洞复现</h3><p>上传正常php文件截图</p>
-<img src="/2021/06/01/apache-lou-dong/img-1.png" class="slug">
+<img src="/2020/07/01/apache-lou-dong/img-1.png" class="slug">
 <p>修改方框处 ，增加 hex码 0a</p>
-<img src="/2021/06/01/apache-lou-dong/img-2.png" class="slug">
+<img src="/2020/07/01/apache-lou-dong/img-2.png" class="slug">
 <p>文件上传成功，访问 <a target="_blank" rel="noopener" href="http://172.16.97.2:8080/evil.php%0a">http://172.16.97.2:8080/evil.php%0a</a> 发现上传成功</p>
-<img src="/2021/06/01/apache-lou-dong/img-3.png" class="slug">
+<img src="/2020/07/01/apache-lou-dong/img-3.png" class="slug">
 <h2 id="1-2Apache-HTTPD-多后缀解析漏洞"><a href="#1-2Apache-HTTPD-多后缀解析漏洞" class="headerlink" title="1.2Apache HTTPD 多后缀解析漏洞"></a>1.2Apache HTTPD 多后缀解析漏洞</h2><h3 id="1）漏洞原理"><a href="#1）漏洞原理" class="headerlink" title="1）漏洞原理"></a>1）漏洞原理</h3><p>Apache HTTPD 支持一个文件拥有多个后缀，并为不同后缀执行不同的指令。比如，如下配置文件：</p>
 <pre class="line-numbers language-none"><code class="language-none">AddType text&#x2F;html .html
 AddLanguage zh-CN .cn<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
@@ -498,24 +498,24 @@ AddLanguage zh-CN .cn<span aria-hidden="true" class="line-numbers-rows"><span></
 <p>那么，在有多个后缀的情况下，只要一个文件含有<code>.php</code>后缀的文件即将被识别成PHP文件，没必要是最后一个后缀。利用这个特性，将会造成一个可以绕过上传白名单的解析漏洞</p>
 <h3 id="2）漏洞复现"><a href="#2）漏洞复现" class="headerlink" title="2）漏洞复现"></a>2）漏洞复现</h3><p>访问<code>http://your-ip/uploadfiles/apache.php.jpeg</code>即可发现，phpinfo被执行了，该文件被解析为php脚本。</p>
 <p><code>http://your-ip/index.php</code>中是一个白名单检查文件后缀的上传组件，上传完成后并未重命名。我们可以通过上传文件名为<code>xxx.php.jpg</code>或<code>xxx.php.jpeg</code>的文件，利用Apache解析漏洞进行getshell</p>
-<img src="/2021/06/01/apache-lou-dong/img-4.png" class="slug">
+<img src="/2020/07/01/apache-lou-dong/img-4.png" class="slug">
 <h2 id="1-3-Apache-SSI-远程命令执行漏洞"><a href="#1-3-Apache-SSI-远程命令执行漏洞" class="headerlink" title="1.3 Apache SSI 远程命令执行漏洞"></a>1.3 Apache SSI 远程命令执行漏洞</h2><h3 id="1-漏洞原理-1"><a href="#1-漏洞原理-1" class="headerlink" title="1)漏洞原理"></a>1)漏洞原理</h3><p>在测试任意文件上传漏洞的时候，目标服务端可能不允许上传php后缀的文件。如果目标服务器开启了SSI与CGI支持，我们可以上传一个shtml文件，并利用<code>&lt;!--#exec cmd=&quot;id&quot; --&gt;</code>语法执行任意命令。</p>
 <h3 id="2）漏洞复现-1"><a href="#2）漏洞复现-1" class="headerlink" title="2）漏洞复现"></a>2）漏洞复现</h3><p>正常上传PHP文件是不允许的，我们可以上传一个shell.shtml文件：</p>
 <pre class="line-numbers language-shtml" data-language="shtml"><code class="language-shtml">&lt;!--#exec cmd&#x3D;&quot;ls&quot; --&gt;<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 
-<img src="/2021/06/01/apache-lou-dong/img-5.png" class="slug">
+<img src="/2020/07/01/apache-lou-dong/img-5.png" class="slug">
 <p>访问当前路径即可rce</p>
-<img src="/2021/06/01/apache-lou-dong/img-6.png" class="slug">
+<img src="/2020/07/01/apache-lou-dong/img-6.png" class="slug">
 
 
 <h2 id="1-4-Apache-Flink上传路径遍历（CVE-2020-17518）"><a href="#1-4-Apache-Flink上传路径遍历（CVE-2020-17518）" class="headerlink" title="1.4 Apache Flink上传路径遍历（CVE-2020-17518）"></a>1.4 Apache Flink上传路径遍历（CVE-2020-17518）</h2><h3 id="1）漏洞原理-1"><a href="#1）漏洞原理-1" class="headerlink" title="1）漏洞原理"></a>1）漏洞原理</h3><p>Apache Flink是具有强大的流和批处理功能的开源流处理框架。</p>
 <p>Apache Flink 1.5.1引入了REST处理程序，该处理程序允许您通过恶意修改的HTTP HEADER将上传的文件写入本地文件系统上的任意位置。</p>
 <h3 id="2）漏洞复现-2"><a href="#2）漏洞复现-2" class="headerlink" title="2）漏洞复现"></a>2）漏洞复现</h3><p>搭建完成</p>
-<img src="/2021/06/01/apache-lou-dong/img-7.png" class="slug">
+<img src="/2020/07/01/apache-lou-dong/img-7.png" class="slug">
 <p>访问submit New JOB 并且上传文件，在文件名处进行路径穿透</p>
-<img src="/2021/06/01/apache-lou-dong/img-8.png" class="slug">
+<img src="/2020/07/01/apache-lou-dong/img-8.png" class="slug">
 <p>上传成功</p>
-<img src="/2021/06/01/apache-lou-dong/img-9.png" class="slug">
+<img src="/2020/07/01/apache-lou-dong/img-9.png" class="slug">
 
 
 <h2 id="1-5-Apache-Flinkjobmanager-logs路径遍历（CVE-2020-17519）"><a href="#1-5-Apache-Flinkjobmanager-logs路径遍历（CVE-2020-17519）" class="headerlink" title="1.5 Apache Flinkjobmanager/logs路径遍历（CVE-2020-17519）"></a>1.5 Apache Flink<code>jobmanager/logs</code>路径遍历（CVE-2020-17519）</h2><h3 id="1-漏洞原理-2"><a href="#1-漏洞原理-2" class="headerlink" title="1) 漏洞原理"></a>1) 漏洞原理</h3><p>Apache Flink是具有强大的流和批处理功能的开源流处理框架。</p>
@@ -528,7 +528,7 @@ AddLanguage zh-CN .cn<span aria-hidden="true" class="line-numbers-rows"><span></
 <h3 id="2）漏洞复现-3"><a href="#2）漏洞复现-3" class="headerlink" title="2）漏洞复现"></a>2）漏洞复现</h3><p>访问当前路径</p>
 <pre class="line-numbers language-html" data-language="html"><code class="language-html">http://172.16.97.2:8081/jobmanager/logs/..%252f..%252f..%252f..%252f..%252f..%252f..%252f..%252f..%252f..%252f..%252f..%252fetc%252fpasswd<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 
-<img src="/2021/06/01/apache-lou-dong/img-10.png" class="slug">
+<img src="/2020/07/01/apache-lou-dong/img-10.png" class="slug">
 
 
 <h4 id=""><a href="#" class="headerlink" title=""></a></h4>
@@ -557,7 +557,7 @@ AddLanguage zh-CN .cn<span aria-hidden="true" class="line-numbers-rows"><span></
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="http://obelia.ml/2021/06/01/apache-lou-dong/">http://obelia.ml/2021/06/01/apache-lou-dong/</a>
+                    <a href="http://obelia.ml/2020/07/01/apache-lou-dong/">http://obelia.ml/2020/07/01/apache-lou-dong/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -794,30 +794,29 @@ AddLanguage zh-CN .cn<span aria-hidden="true" class="line-numbers-rows"><span></
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="far fa-dot-circle"></i>&nbsp;本篇
-            </div>
+                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
             <div class="card">
-                <a href="/2021/06/01/apache-lou-dong/">
+                <a href="/2020/07/12/sql-zhu-ru-ji-chu/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/15.jpg" class="responsive-img" alt="Apache 漏洞">
+                        <img src="/medias/featureimages/7.jpg" class="responsive-img" alt="SQL注入基础">
                         
-                        <span class="card-title">Apache 漏洞</span>
+                        <span class="card-title">SQL注入基础</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            Apache漏洞
+                            1.SQL注入
                         
                     </div>
                     <div class="publish-info">
-                            <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2021-06-01
-                            </span>
+                        <span class="publish-date">
+                            <i class="far fa-clock fa-fw icon-date"></i>2020-07-12
+                        </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-user fa-fw"></i>
@@ -826,7 +825,6 @@ AddLanguage zh-CN .cn<span aria-hidden="true" class="line-numbers-rows"><span></
                         </span>
                     </div>
                 </div>
-
                 
                 <div class="card-action article-tags">
                     
@@ -834,8 +832,8 @@ AddLanguage zh-CN .cn<span aria-hidden="true" class="line-numbers-rows"><span></
                         <span class="chip bg-color">WEB</span>
                     </a>
                     
-                    <a href="/tags/%E6%BC%8F%E6%B4%9E%E5%A4%8D%E7%8E%B0/">
-                        <span class="chip bg-color">漏洞复现</span>
+                    <a href="/tags/top10/">
+                        <span class="chip bg-color">top10</span>
                     </a>
                     
                 </div>
@@ -849,24 +847,24 @@ AddLanguage zh-CN .cn<span aria-hidden="true" class="line-numbers-rows"><span></
                 下一篇&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2021/05/31/msfvenmon-chang-yong-ming-ling-meterpreter-hou-shen-tou-chang-yong-ming-ling/">
+                <a href="/2020/07/01/nei-wang-xin-xi-shou-ji/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/15.jpg" class="responsive-img" alt="Msfvenmon常用命令/Meterpreter后渗透常用命令">
+                        <img src="/medias/featureimages/18.jpg" class="responsive-img" alt="内网信息收集">
                         
-                        <span class="card-title">Msfvenmon常用命令/Meterpreter后渗透常用命令</span>
+                        <span class="card-title">内网信息收集</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            Meterpreter后渗透常用命令
+                            内网信息收集
                         
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2021-05-31
+                                <i class="far fa-clock fa-fw icon-date"></i>2020-07-01
                             </span>
                         <span class="publish-author">
                             
@@ -879,12 +877,12 @@ AddLanguage zh-CN .cn<span aria-hidden="true" class="line-numbers-rows"><span></
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/%E5%B7%A5%E5%85%B7/">
-                        <span class="chip bg-color">工具</span>
-                    </a>
-                    
                     <a href="/tags/%E5%86%85%E7%BD%91/">
                         <span class="chip bg-color">内网</span>
+                    </a>
+                    
+                    <a href="/tags/%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86/">
+                        <span class="chip bg-color">信息收集</span>
                     </a>
                     
                 </div>
@@ -897,6 +895,43 @@ AddLanguage zh-CN .cn<span aria-hidden="true" class="line-numbers-rows"><span></
 
 </div>
 
+
+<script>
+    $('#articleContent').on('copy', function (e) {
+        // IE8 or earlier browser is 'undefined'
+        if (typeof window.getSelection === 'undefined') return;
+
+        var selection = window.getSelection();
+        // if the selection is short let's not annoy our users.
+        if (('' + selection).length < Number.parseInt('120')) {
+            return;
+        }
+
+        // create a div outside of the visible area and fill it with the selected text.
+        var bodyElement = document.getElementsByTagName('body')[0];
+        var newdiv = document.createElement('div');
+        newdiv.style.position = 'absolute';
+        newdiv.style.left = '-99999px';
+        bodyElement.appendChild(newdiv);
+        newdiv.appendChild(selection.getRangeAt(0).cloneContents());
+
+        // we need a <pre> tag workaround.
+        // otherwise the text inside "pre" loses all the line breaks!
+        if (selection.getRangeAt(0).commonAncestorContainer.nodeName === 'PRE') {
+            newdiv.innerHTML = "<pre>" + newdiv.innerHTML + "</pre>";
+        }
+
+        var url = document.location.href;
+        newdiv.innerHTML += '<br />'
+            + '来源: obelia<br />'
+            + '文章作者: obelia<br />'
+            + '文章链接: <a href="' + url + '">' + url + '</a><br />'
+            + '本文章著作权归作者所有，任何形式的转载都请注明出处。';
+
+        selection.selectAllChildren(newdiv);
+        window.setTimeout(function () {bodyElement.removeChild(newdiv);}, 200);
+    });
+</script>
 
 
 <!-- 代码块功能依赖 -->
@@ -1089,7 +1124,7 @@ AddLanguage zh-CN .cn<span aria-hidden="true" class="line-numbers-rows"><span></
             <br>
             
                 &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                        class="white-color">13.8k</span>
+                        class="white-color">14.2k</span>
             
             
             
@@ -1304,6 +1339,8 @@ $(function () {
 
     
 
+    
+    <script type="text/javascript" src="/libs/background/ribbon-dynamic.js" async="async"></script>
     
 
     
