@@ -4,7 +4,7 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="Wireshark 语法, obelia">
+    <meta name="keywords" content="Go 库之go-flag, obelia">
     <meta name="description" content="菜🐔一枚，大哥带带？">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -16,7 +16,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>Wireshark 语法 | obelia</title>
+    <title>Go 库之go-flag | obelia</title>
     <link rel="icon" type="image/png" href="/28.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
@@ -313,12 +313,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/16.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/7.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">Wireshark 语法</h1>
+                    <h1 class="description center-align post-title">Go 库之go-flag</h1>
                 </div>
             </div>
         </div>
@@ -434,8 +434,8 @@
                     
                     <div class="article-tag">
                         
-                            <a href="/tags/%E5%B7%A5%E5%85%B7/">
-                                <span class="chip bg-color">工具</span>
+                            <a href="/tags/Go%E8%AF%AD%E8%A8%80/">
+                                <span class="chip bg-color">Go语言</span>
                             </a>
                         
                     </div>
@@ -450,28 +450,28 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2020-05-27
+                    2021-06-17
                 </div>
                 
 
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
-                    2021-06-01
+                    2021-06-19
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    606
+                    1.6k
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    3 分
+                    7 分
                 </div>
                 
 
@@ -494,73 +494,214 @@
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h1 id="Wireshark语法"><a href="#Wireshark语法" class="headerlink" title="Wireshark语法"></a>Wireshark语法</h1><span id="more"></span>
+                <h1 id="go-flag库"><a href="#go-flag库" class="headerlink" title="go-flag库"></a>go-flag库</h1><span id="more"></span>
 
-<h2 id="1-1-过滤IP"><a href="#1-1-过滤IP" class="headerlink" title="1.1 过滤IP"></a>1.1 过滤IP</h2><pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">ip.src eq ## ip.src &#x3D;&#x3D; 显示来源IP
-ip.dst eq ## ip.dst &#x3D;&#x3D; 显示目的IP
-ip.addr eq ##显示IP<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+<p>#简介<br>在上篇文章中，基础的介绍了flag库，并提供了基础用法及将两个选项共享同一个变量迂回实现，但写起来比较繁琐而且存在选项变量的定义比较繁琐，每个选项都需要根据类型调用对应的Type或TypeVar函数，默认只支持有限的数据类型，当前只有基本类型bool/int/uint/string和time.Duration等问题，为了解决这个问题，今天学习go-flag库、</p>
+<p>go-flags提供了比标准库flag更多的选项。它利用结构标签（struct tag）和反射提供了一个方便、简洁的接口。它除了基本的功能，还提供了丰富的特性：</p>
+<p>1 ：支持短选项（-v）和长选项（–verbose）</p>
+<p>2：支持短选项合写，如-aux</p>
+<p>3：同一个选项可以设置多个值</p>
+<p>4：支持所有的基础类型和 map 类型，甚至是函数</p>
+<p>5：支持命名空间和选项组，等</p>
+<h1 id="简单使用"><a href="#简单使用" class="headerlink" title="简单使用"></a>简单使用</h1><h2 id="库安装"><a href="#库安装" class="headerlink" title="库安装"></a>库安装</h2><p>由于go-flag 为第三库，需要提前安装</p>
+<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">go get github.com&#x2F;jessevdk&#x2F;go-flags<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p>此处存在坑注意规避：<br>1、当我使用GoLond 加载go-flags库时，总是timeout，我尝试通过github下载后拖进引用会出现配置错误，后经过更换IP，挂代理等方式成功，或者等早上或者晚上的时候尝试</p>
+<p>2、 当运行Go-flags 库后 会存在 需要golang.org/x/sys 报错，直接去github下载相应文件，放入src对应目录下即可，地址：<a target="_blank" rel="noopener" href="https://github.com/golang/sys">https://github.com/golang/sys</a></p>
+<h2 id="快速食用"><a href="#快速食用" class="headerlink" title="快速食用"></a>快速食用</h2><p>完整示例代码如下：</p>
+<pre class="line-numbers language-go" data-language="go"><code class="language-go"><span class="token keyword">package</span> main
 
-<h2 id="1-2-过滤端口"><a href="#1-2-过滤端口" class="headerlink" title="1.2 过滤端口"></a>1.2 过滤端口</h2><pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">tcp.port eq 3306 #不管端口是来源还是目标都显示
-tcp.dstport&#x3D;&#x3D;80 #只显示tcp协议的目标端口80
-tcp.srcport&#x3D;&#x3D;80 #只显示tcp协议的来源端口80
-tcp.port&gt;&#x3D;1 and tcp.port &lt;&#x3D;80 #过滤端口范围<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+<span class="token keyword">import</span> <span class="token punctuation">(</span>
+  <span class="token string">"fmt"</span>
 
-<h2 id="1-3-过滤协议"><a href="#1-3-过滤协议" class="headerlink" title="1.3 过滤协议"></a>1.3 过滤协议</h2><pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">tcp
-udp
-arp
-icmp
-http
-smtp
-frp
-dns
-msnms
-ip
-ssl
-oicp
-bootp
-!arp &#x2F; not arp #排除ARP<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+  <span class="token string">"github.com/jessevdk/go-flags"</span>
+<span class="token punctuation">)</span>
 
-<h2 id="1-4-过滤MAC"><a href="#1-4-过滤MAC" class="headerlink" title="1.4 过滤MAC"></a>1.4 过滤MAC</h2><pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">　eth.dst &#x3D;&#x3D; A0:00:00:04:C5:84 &#x2F;&#x2F; 过滤目标mac
-　　eth.src eq A0:00:00:04:C5:84 &#x2F;&#x2F; 过滤来源mac
-　　eth.dst&#x3D;&#x3D;A0:00:00:04:C5:84
-　　eth.dst&#x3D;&#x3D;A0-00-00-04-C5-84
-　　eth.addr eq A0:00:00:04:C5:84 &#x2F;&#x2F; 过滤来源MAC和目标MAC都等于A0:00:00:04:C5:84的
-　　less than 小于 &lt; lt
-　　小于等于 le
-　　等于 eq
-　　大于 gt
-　　大于等于 ge
-　　不等 ne<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<span class="token keyword">type</span> Option <span class="token keyword">struct</span> <span class="token punctuation">&#123;</span>
+  Verbose <span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token builtin">bool</span> <span class="token string">`short:"v" long:"verbose" description:"Show verbose debug message"`</span>
+<span class="token punctuation">&#125;</span>
 
-<h2 id="1-5包长度过滤"><a href="#1-5包长度过滤" class="headerlink" title="1.5包长度过滤"></a>1.5包长度过滤</h2><pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">udp.length &#x3D;&#x3D; 26 这个长度是指udp本身固定长度8加上udp下面那块数据包之和
-　　tcp.len &gt;&#x3D; 7 指的是ip数据包(tcp下面那块数据),不包括tcp本身
-　　ip.len &#x3D;&#x3D; 94 除了以太网头固定长度14,其它都算是ip.len,即从ip本身到最后
-　　frame.len &#x3D;&#x3D; 119 整个数据包长度,从eth开始到最后
-　　eth —&gt; ip or arp —&gt; tcp or udp —&gt; data<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<span class="token keyword">func</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+  <span class="token keyword">var</span> opt Option
+  flags<span class="token punctuation">.</span><span class="token function">Parse</span><span class="token punctuation">(</span><span class="token operator">&amp;</span>opt<span class="token punctuation">)</span>
 
-<h2 id="1-6-http-模式过滤"><a href="#1-6-http-模式过滤" class="headerlink" title="1.6 http 模式过滤"></a>1.6 http 模式过滤</h2><pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">　http.request.method &#x3D;&#x3D; &quot;GET”
-　　http.request.method &#x3D;&#x3D; &quot;POST”
-　　http.request.uri &#x3D;&#x3D; &quot;&#x2F;img&#x2F;logo-edu.gif”
-　　http contains &quot;GET”
-　　http contains &quot;HTTP&#x2F;1.”
-　　&#x2F;&#x2F; GET包
-　　http.request.method &#x3D;&#x3D; &quot;GET” &amp;&amp; http contains &quot;Host: &quot;
-　　http.request.method &#x3D;&#x3D; &quot;GET” &amp;&amp; http contains &quot;User-Agent: &quot;
-　　&#x2F;&#x2F; POST包
-　　http.request.method &#x3D;&#x3D; &quot;POST” &amp;&amp; http contains &quot;Host: &quot;
-　　http.request.method &#x3D;&#x3D; &quot;POST” &amp;&amp; http contains &quot;User-Agent: &quot;
-　　&#x2F;&#x2F; 响应包
-　　http contains &quot;HTTP&#x2F;1.1 200 OK” &amp;&amp; http contains &quot;Content-Type: &quot;
-　　http contains &quot;HTTP&#x2F;1.0 200 OK” &amp;&amp; http contains &quot;Content-Type: &quot;
-　　一定包含如下
-　　Content-Type:<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+  fmt<span class="token punctuation">.</span><span class="token function">Println</span><span class="token punctuation">(</span>opt<span class="token punctuation">.</span>Verbose<span class="token punctuation">)</span>
+<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>编译运行</p>
+<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">.&#x2F;go-flag -h<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p>运行结果如下</p>
+<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">Usage:
+  go-flag [OPTIONS]
 
-<h2 id="1-7-TCP-参数过滤"><a href="#1-7-TCP-参数过滤" class="headerlink" title="1.7 TCP 参数过滤"></a>1.7 TCP 参数过滤</h2><pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">tcp.flags 显示包含TCP标志的封包。
-　　tcp.flags.syn &#x3D;&#x3D; 0x02 显示包含TCP SYN标志的封包。
-　　tcp.window_size &#x3D;&#x3D; 0 &amp;&amp; tcp.flags.reset !&#x3D; 1
-　　8.包内容过滤
-　　tcp[20]表示从20开始，取1个字符
-　　tcp[20:]表示从20开始，取1个字符以上<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+Application Options:
+  -v, --verbose  Show verbose debug message
+
+Help Options:
+  -h, --help     Show this help message
+
+[]<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1><p>go-flag 简单使用步骤<br>1、 定义选项结构，在结构标签中设置选项信息。通过short和long设置短、长选项名字，description设置帮助信息。命令行传参时，短选项前加-，长选项前加–</p>
+<p>2、 声明选项变量</p>
+<p>3、 调用go-flags的解析方法解析<br>注意：由于Verbose字段是切片类型，每次遇到-v或–verbose都会追加一个true到切片中<br>如：</p>
+<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">.&#x2F;go-flag -v -v<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p>显示结果如下</p>
+<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">[true true]<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<h1 id="基本特性"><a href="#基本特性" class="headerlink" title="基本特性"></a>基本特性</h1><h2 id="1、-支持丰富的数据类型"><a href="#1、-支持丰富的数据类型" class="headerlink" title="1、 支持丰富的数据类型"></a>1、 支持丰富的数据类型</h2><p> 1.1 所有的基本类型（包括有符号整数int/int8/int16/int32/int64，无符号整数uint/uint8/uint16/uint32/uint64，浮点数float32/float64，布尔类型bool和字符串string）和它们的切片<br> 1.2 map 类型。只支持键为string，值为基础类型的 map<br> 1.3 函数类型</p>
+<p>示例：</p>
+<pre class="line-numbers language-go" data-language="go"><code class="language-go"><span class="token keyword">package</span> main
+
+<span class="token keyword">import</span> <span class="token punctuation">(</span>
+  <span class="token string">"fmt"</span>
+
+  <span class="token string">"github.com/jessevdk/go-flags"</span>
+<span class="token punctuation">)</span>
+
+<span class="token keyword">type</span> Option <span class="token keyword">struct</span> <span class="token punctuation">&#123;</span>
+  IntFlag         <span class="token builtin">int</span>             <span class="token string">`short:"i" long:"int" description:"int flag value"`</span>
+  IntSlice        <span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token builtin">int</span>           <span class="token string">`long:"intslice" description:"int slice flag value"`</span>
+  BoolFlag        <span class="token builtin">bool</span>            <span class="token string">`long:"bool" description:"bool flag value"`</span>
+  BoolSlice       <span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token builtin">bool</span>          <span class="token string">`long:"boolslice" description:"bool slice flag value"`</span>
+  FloatFlag       <span class="token builtin">float64</span>         <span class="token string">`long:"float", description:"float64 flag value"`</span>
+  FloatSlice      <span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token builtin">float64</span>       <span class="token string">`long:"floatslice" description:"float64 slice flag value"`</span>
+  StringFlag      <span class="token builtin">string</span>          <span class="token string">`short:"s" long:"string" description:"string flag value"`</span>
+  StringSlice     <span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token builtin">string</span>        <span class="token string">`long:"strslice" description:"string slice flag value"`</span>
+  PtrStringSlice  <span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token operator">*</span><span class="token builtin">string</span>       <span class="token string">`long:"pstrslice" description:"slice of pointer of string flag value"`</span>
+  Call            <span class="token keyword">func</span><span class="token punctuation">(</span><span class="token builtin">string</span><span class="token punctuation">)</span>    <span class="token string">`long:"call" description:"callback"`</span>
+  IntMap          <span class="token keyword">map</span><span class="token punctuation">[</span><span class="token builtin">string</span><span class="token punctuation">]</span><span class="token builtin">int</span>  <span class="token string">`long:"intmap" description:"A map from string to int"`</span>
+<span class="token punctuation">&#125;</span>
+
+<span class="token keyword">func</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+  <span class="token keyword">var</span> opt Option
+  opt<span class="token punctuation">.</span>Call <span class="token operator">=</span> <span class="token keyword">func</span> <span class="token punctuation">(</span>value <span class="token builtin">string</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+    fmt<span class="token punctuation">.</span><span class="token function">Println</span><span class="token punctuation">(</span><span class="token string">"in callback: "</span><span class="token punctuation">,</span> value<span class="token punctuation">)</span>
+  <span class="token punctuation">&#125;</span>
+  
+  <span class="token boolean">_</span><span class="token punctuation">,</span> err <span class="token operator">:=</span> flags<span class="token punctuation">.</span><span class="token function">Parse</span><span class="token punctuation">(</span><span class="token operator">&amp;</span>opt<span class="token punctuation">)</span>
+  <span class="token keyword">if</span> err <span class="token operator">!=</span> <span class="token boolean">nil</span> <span class="token punctuation">&#123;</span>
+    fmt<span class="token punctuation">.</span><span class="token function">Println</span><span class="token punctuation">(</span><span class="token string">"Parse error:"</span><span class="token punctuation">,</span> err<span class="token punctuation">)</span>
+    <span class="token keyword">return</span>
+  <span class="token punctuation">&#125;</span>
+  
+  fmt<span class="token punctuation">.</span><span class="token function">Printf</span><span class="token punctuation">(</span><span class="token string">"int flag: %v\n"</span><span class="token punctuation">,</span> opt<span class="token punctuation">.</span>IntFlag<span class="token punctuation">)</span>
+  fmt<span class="token punctuation">.</span><span class="token function">Printf</span><span class="token punctuation">(</span><span class="token string">"int slice flag: %v\n"</span><span class="token punctuation">,</span> opt<span class="token punctuation">.</span>IntSlice<span class="token punctuation">)</span>
+  fmt<span class="token punctuation">.</span><span class="token function">Printf</span><span class="token punctuation">(</span><span class="token string">"bool flag: %v\n"</span><span class="token punctuation">,</span> opt<span class="token punctuation">.</span>BoolFlag<span class="token punctuation">)</span>
+  fmt<span class="token punctuation">.</span><span class="token function">Printf</span><span class="token punctuation">(</span><span class="token string">"bool slice flag: %v\n"</span><span class="token punctuation">,</span> opt<span class="token punctuation">.</span>BoolSlice<span class="token punctuation">)</span>
+  fmt<span class="token punctuation">.</span><span class="token function">Printf</span><span class="token punctuation">(</span><span class="token string">"float flag: %v\n"</span><span class="token punctuation">,</span> opt<span class="token punctuation">.</span>FloatFlag<span class="token punctuation">)</span>
+  fmt<span class="token punctuation">.</span><span class="token function">Printf</span><span class="token punctuation">(</span><span class="token string">"float slice flag: %v\n"</span><span class="token punctuation">,</span> opt<span class="token punctuation">.</span>FloatSlice<span class="token punctuation">)</span>
+  fmt<span class="token punctuation">.</span><span class="token function">Printf</span><span class="token punctuation">(</span><span class="token string">"string flag: %v\n"</span><span class="token punctuation">,</span> opt<span class="token punctuation">.</span>StringFlag<span class="token punctuation">)</span>
+  fmt<span class="token punctuation">.</span><span class="token function">Printf</span><span class="token punctuation">(</span><span class="token string">"string slice flag: %v\n"</span><span class="token punctuation">,</span> opt<span class="token punctuation">.</span>StringSlice<span class="token punctuation">)</span>
+  fmt<span class="token punctuation">.</span><span class="token function">Println</span><span class="token punctuation">(</span><span class="token string">"slice of pointer of string flag: "</span><span class="token punctuation">)</span>
+  <span class="token keyword">for</span> i <span class="token operator">:=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> <span class="token function">len</span><span class="token punctuation">(</span>opt<span class="token punctuation">.</span>PtrStringSlice<span class="token punctuation">)</span><span class="token punctuation">;</span> i<span class="token operator">++</span> <span class="token punctuation">&#123;</span>
+    fmt<span class="token punctuation">.</span><span class="token function">Printf</span><span class="token punctuation">(</span><span class="token string">"\t%d: %v\n"</span><span class="token punctuation">,</span> i<span class="token punctuation">,</span> <span class="token operator">*</span>opt<span class="token punctuation">.</span>PtrStringSlice<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">)</span>
+  <span class="token punctuation">&#125;</span>
+  fmt<span class="token punctuation">.</span><span class="token function">Printf</span><span class="token punctuation">(</span><span class="token string">"int map: %v\n"</span><span class="token punctuation">,</span> opt<span class="token punctuation">.</span>IntMap<span class="token punctuation">)</span>
+<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h1 id="常用设置"><a href="#常用设置" class="headerlink" title="常用设置"></a>常用设置</h1><p>go-flags提供了非常多的设置选项，具体可参见:<a target="_blank" rel="noopener" href="https://godoc.org/github.com/jessevdk/go-flags">https://godoc.org/github.com/jessevdk/go-flags</a><br>此处介绍俩个：<br>1、 required<br>required非空时，表示对应的选项必须设置值，否则解析时返回ErrRequired错误</p>
+<p>2、default<br>default用于设置选项的默认值。如果已经设置了默认值，那么required是否设置并不影响，也就是说命令行参数中该选项可以没有</p>
+<h1 id="高级设置"><a href="#高级设置" class="headerlink" title="高级设置"></a>高级设置</h1><h2 id="选项分组"><a href="#选项分组" class="headerlink" title="选项分组"></a>选项分组</h2><pre class="line-numbers language-go" data-language="go"><code class="language-go"><span class="token keyword">package</span> main
+
+<span class="token keyword">import</span> <span class="token punctuation">(</span>
+  <span class="token string">"fmt"</span>
+  <span class="token string">"log"</span>
+  <span class="token string">"os"</span>
+    
+  <span class="token string">"github.com/jessevdk/go-flags"</span>
+<span class="token punctuation">)</span>
+
+<span class="token keyword">type</span> Option <span class="token keyword">struct</span> <span class="token punctuation">&#123;</span>
+  Basic GroupBasicOption <span class="token string">`description:"basic type" group:"basic"`</span>
+  Slice GroupSliceOption <span class="token string">`description:"slice of basic type" group:"slice"`</span>
+<span class="token punctuation">&#125;</span>
+
+<span class="token keyword">type</span> GroupBasicOption <span class="token keyword">struct</span> <span class="token punctuation">&#123;</span>
+  IntFlag    <span class="token builtin">int</span>     <span class="token string">`short:"i" long:"intflag" description:"int flag"`</span>
+  BoolFlag   <span class="token builtin">bool</span>    <span class="token string">`short:"b" long:"boolflag" description:"bool flag"`</span>
+  FloatFlag  <span class="token builtin">float64</span> <span class="token string">`short:"f" long:"floatflag" description:"float flag"`</span>
+  StringFlag <span class="token builtin">string</span>  <span class="token string">`short:"s" long:"stringflag" description:"string flag"`</span>
+<span class="token punctuation">&#125;</span>
+
+<span class="token keyword">type</span> GroupSliceOption <span class="token keyword">struct</span> <span class="token punctuation">&#123;</span>
+  IntSlice		<span class="token builtin">int</span>			<span class="token string">`long:"intslice" description:"int slice"`</span>
+  BoolSlice		<span class="token builtin">bool</span>		<span class="token string">`long:"boolslice" description:"bool slice"`</span>
+  FloatSlice	<span class="token builtin">float64</span>	<span class="token string">`long:"floatslice" description:"float slice"`</span>
+  StringSlice	<span class="token builtin">string</span>	<span class="token string">`long:"stringslice" description:"string slice"`</span>
+<span class="token punctuation">&#125;</span>
+
+<span class="token keyword">func</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+  <span class="token keyword">var</span> opt Option
+  p <span class="token operator">:=</span> flags<span class="token punctuation">.</span><span class="token function">NewParser</span><span class="token punctuation">(</span><span class="token operator">&amp;</span>opt<span class="token punctuation">,</span> flags<span class="token punctuation">.</span>Default<span class="token punctuation">)</span>
+  <span class="token boolean">_</span><span class="token punctuation">,</span> err <span class="token operator">:=</span> p<span class="token punctuation">.</span><span class="token function">ParseArgs</span><span class="token punctuation">(</span>os<span class="token punctuation">.</span>Args<span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">:</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
+  <span class="token keyword">if</span> err <span class="token operator">!=</span> <span class="token boolean">nil</span> <span class="token punctuation">&#123;</span>
+    log<span class="token punctuation">.</span><span class="token function">Fatal</span><span class="token punctuation">(</span><span class="token string">"Parse error:"</span><span class="token punctuation">,</span> err<span class="token punctuation">)</span>
+  <span class="token punctuation">&#125;</span>
+    
+  basicGroup <span class="token operator">:=</span> p<span class="token punctuation">.</span>Command<span class="token punctuation">.</span>Group<span class="token punctuation">.</span><span class="token function">Find</span><span class="token punctuation">(</span><span class="token string">"basic"</span><span class="token punctuation">)</span>
+  <span class="token keyword">for</span> <span class="token boolean">_</span><span class="token punctuation">,</span> option <span class="token operator">:=</span> <span class="token keyword">range</span> basicGroup<span class="token punctuation">.</span><span class="token function">Options</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+    fmt<span class="token punctuation">.</span><span class="token function">Printf</span><span class="token punctuation">(</span><span class="token string">"name:%s value:%v\n"</span><span class="token punctuation">,</span> option<span class="token punctuation">.</span><span class="token function">LongNameWithNamespace</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span> option<span class="token punctuation">.</span><span class="token function">Value</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+  <span class="token punctuation">&#125;</span>
+	
+  sliceGroup <span class="token operator">:=</span> p<span class="token punctuation">.</span>Command<span class="token punctuation">.</span>Group<span class="token punctuation">.</span><span class="token function">Find</span><span class="token punctuation">(</span><span class="token string">"slice"</span><span class="token punctuation">)</span>
+  <span class="token keyword">for</span> <span class="token boolean">_</span><span class="token punctuation">,</span> option <span class="token operator">:=</span> <span class="token keyword">range</span> sliceGroup<span class="token punctuation">.</span><span class="token function">Options</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+    fmt<span class="token punctuation">.</span><span class="token function">Printf</span><span class="token punctuation">(</span><span class="token string">"name:%s value:%v\n"</span><span class="token punctuation">,</span> option<span class="token punctuation">.</span><span class="token function">LongNameWithNamespace</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span> option<span class="token punctuation">.</span><span class="token function">Value</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+  <span class="token punctuation">&#125;</span>
+<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h2 id="子命令"><a href="#子命令" class="headerlink" title="子命令"></a>子命令</h2><p>go-flags支持子命令。我们经常使用的 Go 和 Git 命令行程序就有大量的子命令。例如go version、go build、go run、git status、git commit这些命令中version/build/run/status/commit就是子命令。 使用go-flags定义子命令比较简单：</p>
+<pre class="line-numbers language-go" data-language="go"><code class="language-go"><span class="token keyword">package</span> main
+
+<span class="token keyword">import</span> <span class="token punctuation">(</span>
+  <span class="token string">"errors"</span>
+  <span class="token string">"fmt"</span>
+  <span class="token string">"log"</span>
+  <span class="token string">"strconv"</span>
+  <span class="token string">"strings"</span>
+
+  <span class="token string">"github.com/jessevdk/go-flags"</span>
+<span class="token punctuation">)</span>
+
+<span class="token keyword">type</span> MathCommand <span class="token keyword">struct</span> <span class="token punctuation">&#123;</span>
+  Op <span class="token builtin">string</span> <span class="token string">`long:"op" description:"operation to execute"`</span>
+  Args <span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token builtin">string</span>
+  Result <span class="token builtin">int64</span>
+<span class="token punctuation">&#125;</span>
+
+<span class="token keyword">func</span> <span class="token punctuation">(</span>this <span class="token operator">*</span>MathCommand<span class="token punctuation">)</span> <span class="token function">Execute</span><span class="token punctuation">(</span>args <span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token builtin">string</span><span class="token punctuation">)</span> <span class="token builtin">error</span> <span class="token punctuation">&#123;</span>
+  <span class="token keyword">if</span> this<span class="token punctuation">.</span>Op <span class="token operator">!=</span> <span class="token string">"+"</span> <span class="token operator">&amp;&amp;</span> this<span class="token punctuation">.</span>Op <span class="token operator">!=</span> <span class="token string">"-"</span> <span class="token operator">&amp;&amp;</span> this<span class="token punctuation">.</span>Op <span class="token operator">!=</span> <span class="token string">"x"</span> <span class="token operator">&amp;&amp;</span> this<span class="token punctuation">.</span>Op <span class="token operator">!=</span> <span class="token string">"/"</span> <span class="token punctuation">&#123;</span>
+    <span class="token keyword">return</span> errors<span class="token punctuation">.</span><span class="token function">New</span><span class="token punctuation">(</span><span class="token string">"invalid op"</span><span class="token punctuation">)</span>
+  <span class="token punctuation">&#125;</span>
+
+  <span class="token keyword">for</span> <span class="token boolean">_</span><span class="token punctuation">,</span> arg <span class="token operator">:=</span> <span class="token keyword">range</span> args <span class="token punctuation">&#123;</span>
+    num<span class="token punctuation">,</span> err <span class="token operator">:=</span> strconv<span class="token punctuation">.</span><span class="token function">ParseInt</span><span class="token punctuation">(</span>arg<span class="token punctuation">,</span> <span class="token number">10</span><span class="token punctuation">,</span> <span class="token number">64</span><span class="token punctuation">)</span>
+    <span class="token keyword">if</span> err <span class="token operator">!=</span> <span class="token boolean">nil</span> <span class="token punctuation">&#123;</span>
+      <span class="token keyword">return</span> err
+    <span class="token punctuation">&#125;</span>
+
+    this<span class="token punctuation">.</span>Result <span class="token operator">+=</span> num
+  <span class="token punctuation">&#125;</span>
+
+  this<span class="token punctuation">.</span>Args <span class="token operator">=</span> args
+  <span class="token keyword">return</span> <span class="token boolean">nil</span>
+<span class="token punctuation">&#125;</span>
+
+<span class="token keyword">type</span> Option <span class="token keyword">struct</span> <span class="token punctuation">&#123;</span>
+	Math MathCommand <span class="token string">`command:"math"`</span>
+<span class="token punctuation">&#125;</span>
+
+<span class="token keyword">func</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+	<span class="token keyword">var</span> opt Option
+	<span class="token boolean">_</span><span class="token punctuation">,</span> err <span class="token operator">:=</span> flags<span class="token punctuation">.</span><span class="token function">Parse</span><span class="token punctuation">(</span><span class="token operator">&amp;</span>opt<span class="token punctuation">)</span>
+
+	<span class="token keyword">if</span> err <span class="token operator">!=</span> <span class="token boolean">nil</span> <span class="token punctuation">&#123;</span>
+		log<span class="token punctuation">.</span><span class="token function">Fatal</span><span class="token punctuation">(</span>err<span class="token punctuation">)</span>
+	<span class="token punctuation">&#125;</span>
+
+	fmt<span class="token punctuation">.</span><span class="token function">Printf</span><span class="token punctuation">(</span><span class="token string">"The result of %s is %d"</span><span class="token punctuation">,</span> strings<span class="token punctuation">.</span><span class="token function">Join</span><span class="token punctuation">(</span>opt<span class="token punctuation">.</span>Math<span class="token punctuation">.</span>Args<span class="token punctuation">,</span> opt<span class="token punctuation">.</span>Math<span class="token punctuation">.</span>Op<span class="token punctuation">)</span><span class="token punctuation">,</span> opt<span class="token punctuation">.</span>Math<span class="token punctuation">.</span>Result<span class="token punctuation">)</span>
+<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>子命令必须实现go-flags定义的Commander接口：</p>
+<pre class="line-numbers language-go" data-language="go"><code class="language-go"><span class="token keyword">type</span> Commander <span class="token keyword">interface</span> <span class="token punctuation">&#123;</span>
+    <span class="token function">Execute</span><span class="token punctuation">(</span>args <span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token builtin">string</span><span class="token punctuation">)</span> <span class="token builtin">error</span>
+<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+<p>解析命令行时，如果遇到不是以-或–开头的参数，go-flags会尝试将其解释为子命令名。子命令的名字通过在结构标签中使用command指定。 子命令后面的参数都将作为子命令的参数，子命令也可以有选项</p>
 
                 
             </div>
@@ -587,7 +728,7 @@ bootp
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="http://obelia.ml/2020/05/27/wireshark-yu-fa/">http://obelia.ml/2020/05/27/wireshark-yu-fa/</a>
+                    <a href="http://obelia.ml/2021/06/17/go-ku-zhi-go-flag/">http://obelia.ml/2021/06/17/go-ku-zhi-go-flag/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -625,8 +766,8 @@ bootp
                     
                         <div class="article-tag">
                             
-                                <a href="/tags/%E5%B7%A5%E5%85%B7/">
-                                    <span class="chip bg-color">工具</span>
+                                <a href="/tags/Go%E8%AF%AD%E8%A8%80/">
+                                    <span class="chip bg-color">Go语言</span>
                                 </a>
                             
                         </div>
@@ -820,29 +961,30 @@ bootp
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
+                <i class="far fa-dot-circle"></i>&nbsp;本篇
+            </div>
             <div class="card">
-                <a href="/2020/06/10/linux-ji-chu/">
+                <a href="/2021/06/17/go-ku-zhi-go-flag/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/2.jpg" class="responsive-img" alt="Linux 基础">
+                        <img src="/medias/featureimages/7.jpg" class="responsive-img" alt="Go 库之go-flag">
                         
-                        <span class="card-title">Linux 基础</span>
+                        <span class="card-title">Go 库之go-flag</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            Linux 学习笔记
+                            go-flag库
                         
                     </div>
                     <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2020-06-10
-                        </span>
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2021-06-17
+                            </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-user fa-fw"></i>
@@ -851,11 +993,12 @@ bootp
                         </span>
                     </div>
                 </div>
+
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/">
-                        <span class="chip bg-color">基础知识</span>
+                    <a href="/tags/Go%E8%AF%AD%E8%A8%80/">
+                        <span class="chip bg-color">Go语言</span>
                     </a>
                     
                 </div>
@@ -869,24 +1012,24 @@ bootp
                 下一篇&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2020/03/10/iterm2-pei-zhi/">
+                <a href="/2021/06/16/go-ku-zhi-flag/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/6.jpg" class="responsive-img" alt="iterm2配置">
+                        <img src="/medias/featureimages/12.jpg" class="responsive-img" alt="Go 库之 flag">
                         
-                        <span class="card-title">iterm2配置</span>
+                        <span class="card-title">Go 库之 flag</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            ITerm2 配置
+                            Flag 库
                         
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2020-03-10
+                                <i class="far fa-clock fa-fw icon-date"></i>2021-06-16
                             </span>
                         <span class="publish-author">
                             
@@ -899,12 +1042,8 @@ bootp
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/%E9%85%8D%E7%BD%AE/">
-                        <span class="chip bg-color">配置</span>
-                    </a>
-                    
-                    <a href="/tags/%E6%9C%8D%E5%8A%A1%E5%99%A8/">
-                        <span class="chip bg-color">服务器</span>
+                    <a href="/tags/Go%E8%AF%AD%E8%A8%80/">
+                        <span class="chip bg-color">Go语言</span>
                     </a>
                     
                 </div>

@@ -4,7 +4,7 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="Wireshark 语法, obelia">
+    <meta name="keywords" content="Go 库之 flag, obelia">
     <meta name="description" content="菜🐔一枚，大哥带带？">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -16,7 +16,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>Wireshark 语法 | obelia</title>
+    <title>Go 库之 flag | obelia</title>
     <link rel="icon" type="image/png" href="/28.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
@@ -313,12 +313,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/16.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/12.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">Wireshark 语法</h1>
+                    <h1 class="description center-align post-title">Go 库之 flag</h1>
                 </div>
             </div>
         </div>
@@ -434,8 +434,8 @@
                     
                     <div class="article-tag">
                         
-                            <a href="/tags/%E5%B7%A5%E5%85%B7/">
-                                <span class="chip bg-color">工具</span>
+                            <a href="/tags/Go%E8%AF%AD%E8%A8%80/">
+                                <span class="chip bg-color">Go语言</span>
                             </a>
                         
                     </div>
@@ -450,21 +450,21 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2020-05-27
+                    2021-06-16
                 </div>
                 
 
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
-                    2021-06-01
+                    2021-06-17
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    606
+                    705
                 </div>
                 
 
@@ -494,73 +494,129 @@
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h1 id="Wireshark语法"><a href="#Wireshark语法" class="headerlink" title="Wireshark语法"></a>Wireshark语法</h1><span id="more"></span>
+                <h1 id="Flag-库"><a href="#Flag-库" class="headerlink" title="Flag 库"></a>Flag 库</h1><span id="more"></span>
 
-<h2 id="1-1-过滤IP"><a href="#1-1-过滤IP" class="headerlink" title="1.1 过滤IP"></a>1.1 过滤IP</h2><pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">ip.src eq ## ip.src &#x3D;&#x3D; 显示来源IP
-ip.dst eq ## ip.dst &#x3D;&#x3D; 显示目的IP
-ip.addr eq ##显示IP<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+<p>##1 简介<br>flag 用于解析命令选项，常用语工具开发过程中的命令行选项</p>
+<p>##2 快速使用<br>以下为flag库基本使用</p>
+<pre class="line-numbers language-go" data-language="go"><code class="language-go"><span class="token keyword">package</span> main
 
-<h2 id="1-2-过滤端口"><a href="#1-2-过滤端口" class="headerlink" title="1.2 过滤端口"></a>1.2 过滤端口</h2><pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">tcp.port eq 3306 #不管端口是来源还是目标都显示
-tcp.dstport&#x3D;&#x3D;80 #只显示tcp协议的目标端口80
-tcp.srcport&#x3D;&#x3D;80 #只显示tcp协议的来源端口80
-tcp.port&gt;&#x3D;1 and tcp.port &lt;&#x3D;80 #过滤端口范围<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+<span class="token keyword">import</span> <span class="token punctuation">(</span>
+	<span class="token string">"fmt"</span>
+	<span class="token string">"flag"</span>
+	<span class="token string">"time"</span>
+<span class="token punctuation">)</span>
 
-<h2 id="1-3-过滤协议"><a href="#1-3-过滤协议" class="headerlink" title="1.3 过滤协议"></a>1.3 过滤协议</h2><pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">tcp
-udp
-arp
-icmp
-http
-smtp
-frp
-dns
-msnms
-ip
-ssl
-oicp
-bootp
-!arp &#x2F; not arp #排除ARP<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<span class="token keyword">var</span> <span class="token punctuation">(</span>
+	intflag <span class="token builtin">int</span>
+	boolflag <span class="token builtin">bool</span>
+	stringflag <span class="token builtin">string</span>
+	period time<span class="token punctuation">.</span>Duration
+<span class="token punctuation">)</span>
 
-<h2 id="1-4-过滤MAC"><a href="#1-4-过滤MAC" class="headerlink" title="1.4 过滤MAC"></a>1.4 过滤MAC</h2><pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">　eth.dst &#x3D;&#x3D; A0:00:00:04:C5:84 &#x2F;&#x2F; 过滤目标mac
-　　eth.src eq A0:00:00:04:C5:84 &#x2F;&#x2F; 过滤来源mac
-　　eth.dst&#x3D;&#x3D;A0:00:00:04:C5:84
-　　eth.dst&#x3D;&#x3D;A0-00-00-04-C5-84
-　　eth.addr eq A0:00:00:04:C5:84 &#x2F;&#x2F; 过滤来源MAC和目标MAC都等于A0:00:00:04:C5:84的
-　　less than 小于 &lt; lt
-　　小于等于 le
-　　等于 eq
-　　大于 gt
-　　大于等于 ge
-　　不等 ne<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<span class="token keyword">func</span> <span class="token function">init</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+	flag<span class="token punctuation">.</span><span class="token function">IntVar</span><span class="token punctuation">(</span><span class="token operator">&amp;</span>intflag<span class="token punctuation">,</span><span class="token string">"intflag"</span><span class="token punctuation">,</span><span class="token number">0</span><span class="token punctuation">,</span><span class="token string">"int flag value"</span><span class="token punctuation">)</span>
+	flag<span class="token punctuation">.</span><span class="token function">BoolVar</span><span class="token punctuation">(</span><span class="token operator">&amp;</span>boolflag<span class="token punctuation">,</span><span class="token string">"boolflag"</span><span class="token punctuation">,</span><span class="token boolean">false</span><span class="token punctuation">,</span><span class="token string">"bool flag value"</span><span class="token punctuation">)</span>
+	flag<span class="token punctuation">.</span><span class="token function">StringVar</span><span class="token punctuation">(</span><span class="token operator">&amp;</span>stringflag<span class="token punctuation">,</span><span class="token string">"stringflag"</span><span class="token punctuation">,</span><span class="token string">"defalute"</span><span class="token punctuation">,</span><span class="token string">"string flga value"</span><span class="token punctuation">)</span>
+	flag<span class="token punctuation">.</span><span class="token function">DurationVar</span><span class="token punctuation">(</span><span class="token operator">&amp;</span>period<span class="token punctuation">,</span><span class="token string">"period"</span><span class="token punctuation">,</span><span class="token number">1</span><span class="token operator">*</span>time<span class="token punctuation">.</span>Second<span class="token punctuation">,</span><span class="token string">"sleep period"</span><span class="token punctuation">)</span>
 
-<h2 id="1-5包长度过滤"><a href="#1-5包长度过滤" class="headerlink" title="1.5包长度过滤"></a>1.5包长度过滤</h2><pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">udp.length &#x3D;&#x3D; 26 这个长度是指udp本身固定长度8加上udp下面那块数据包之和
-　　tcp.len &gt;&#x3D; 7 指的是ip数据包(tcp下面那块数据),不包括tcp本身
-　　ip.len &#x3D;&#x3D; 94 除了以太网头固定长度14,其它都算是ip.len,即从ip本身到最后
-　　frame.len &#x3D;&#x3D; 119 整个数据包长度,从eth开始到最后
-　　eth —&gt; ip or arp —&gt; tcp or udp —&gt; data<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
-<h2 id="1-6-http-模式过滤"><a href="#1-6-http-模式过滤" class="headerlink" title="1.6 http 模式过滤"></a>1.6 http 模式过滤</h2><pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">　http.request.method &#x3D;&#x3D; &quot;GET”
-　　http.request.method &#x3D;&#x3D; &quot;POST”
-　　http.request.uri &#x3D;&#x3D; &quot;&#x2F;img&#x2F;logo-edu.gif”
-　　http contains &quot;GET”
-　　http contains &quot;HTTP&#x2F;1.”
-　　&#x2F;&#x2F; GET包
-　　http.request.method &#x3D;&#x3D; &quot;GET” &amp;&amp; http contains &quot;Host: &quot;
-　　http.request.method &#x3D;&#x3D; &quot;GET” &amp;&amp; http contains &quot;User-Agent: &quot;
-　　&#x2F;&#x2F; POST包
-　　http.request.method &#x3D;&#x3D; &quot;POST” &amp;&amp; http contains &quot;Host: &quot;
-　　http.request.method &#x3D;&#x3D; &quot;POST” &amp;&amp; http contains &quot;User-Agent: &quot;
-　　&#x2F;&#x2F; 响应包
-　　http contains &quot;HTTP&#x2F;1.1 200 OK” &amp;&amp; http contains &quot;Content-Type: &quot;
-　　http contains &quot;HTTP&#x2F;1.0 200 OK” &amp;&amp; http contains &quot;Content-Type: &quot;
-　　一定包含如下
-　　Content-Type:<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<span class="token punctuation">&#125;</span>
+<span class="token keyword">func</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+	flag<span class="token punctuation">.</span><span class="token function">Parse</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+	fmt<span class="token punctuation">.</span><span class="token function">Println</span><span class="token punctuation">(</span><span class="token string">"int flag"</span><span class="token punctuation">,</span>intflag<span class="token punctuation">)</span>
+	fmt<span class="token punctuation">.</span><span class="token function">Println</span><span class="token punctuation">(</span><span class="token string">"string flag"</span><span class="token punctuation">,</span>stringflag<span class="token punctuation">)</span>
+	fmt<span class="token punctuation">.</span><span class="token function">Println</span><span class="token punctuation">(</span><span class="token string">"Bool flag "</span><span class="token punctuation">,</span>boolflag<span class="token punctuation">)</span>
+	fmt<span class="token punctuation">.</span><span class="token function">Println</span><span class="token punctuation">(</span><span class="token string">"sleep for %v..."</span><span class="token punctuation">,</span>period<span class="token punctuation">)</span>
+	time<span class="token punctuation">.</span><span class="token function">Sleep</span><span class="token punctuation">(</span>period<span class="token punctuation">)</span>
+	fmt<span class="token punctuation">.</span><span class="token function">Println</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>脚本编译后运行</p>
+<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">.&#x2F;flag   -intflag 3 -period 10s -stringflag test<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p>输入如下结果</p>
+<pre class="line-numbers language-go" data-language="go"><code class="language-go"><span class="token builtin">int</span> flag <span class="token number">3</span>
+<span class="token builtin">string</span> flag test
+Bool flag  <span class="token boolean">false</span>
+sleep <span class="token keyword">for</span> <span class="token operator">%</span>v<span class="token operator">...</span> <span class="token number">10</span>s
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+<p>当我们不对某一值做具体设定时，则使用默认值</p>
+<p>##3 总结</p>
+<h3 id="3-1-flag库使用步骤"><a href="#3-1-flag库使用步骤" class="headerlink" title="3.1 flag库使用步骤"></a>3.1 flag库使用步骤</h3><p>1 定义全局变量存储选项值，如 intflga/boolflag/Stringflag/period<br>2 在init方法中使用 flag.TypleVar方法定义选项，Tpye可以为基本类型<br>3 在main方法中调用flag.Parse 从OS.Args[1:]中解析选项</p>
+<p>###3.2 注意点<br>flag.Parse方法必须在所有选项都定义之后调用，且flag.Parse调用之后不能再定义选项。如果按照前面的步骤，基本不会出现问题。 因为init在所有代码之前执行，将选项定义都放在init中，main函数中执行flag.Parse时所有选项都已经定义了</p>
+<h2 id="4-另一种定义选项方法"><a href="#4-另一种定义选项方法" class="headerlink" title="4 另一种定义选项方法"></a>4 另一种定义选项方法</h2><pre class="line-numbers language-go" data-language="go"><code class="language-go"><span class="token keyword">package</span> main
 
-<h2 id="1-7-TCP-参数过滤"><a href="#1-7-TCP-参数过滤" class="headerlink" title="1.7 TCP 参数过滤"></a>1.7 TCP 参数过滤</h2><pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">tcp.flags 显示包含TCP标志的封包。
-　　tcp.flags.syn &#x3D;&#x3D; 0x02 显示包含TCP SYN标志的封包。
-　　tcp.window_size &#x3D;&#x3D; 0 &amp;&amp; tcp.flags.reset !&#x3D; 1
-　　8.包内容过滤
-　　tcp[20]表示从20开始，取1个字符
-　　tcp[20:]表示从20开始，取1个字符以上<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<span class="token keyword">import</span> <span class="token punctuation">(</span>
+  <span class="token string">"fmt"</span>
+  <span class="token string">"flag"</span>
+<span class="token punctuation">)</span>
+
+<span class="token keyword">var</span> <span class="token punctuation">(</span>
+  intflag <span class="token operator">*</span><span class="token builtin">int</span>
+  boolflag <span class="token operator">*</span><span class="token builtin">bool</span>
+  stringflag <span class="token operator">*</span><span class="token builtin">string</span>
+<span class="token punctuation">)</span>
+
+<span class="token keyword">func</span> <span class="token function">init</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+  intflag <span class="token operator">=</span> flag<span class="token punctuation">.</span><span class="token function">Int</span><span class="token punctuation">(</span><span class="token string">"intflag"</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">,</span> <span class="token string">"int flag value"</span><span class="token punctuation">)</span>
+  boolflag <span class="token operator">=</span> flag<span class="token punctuation">.</span><span class="token function">Bool</span><span class="token punctuation">(</span><span class="token string">"boolflag"</span><span class="token punctuation">,</span> <span class="token boolean">false</span><span class="token punctuation">,</span> <span class="token string">"bool flag value"</span><span class="token punctuation">)</span>
+  stringflag <span class="token operator">=</span> flag<span class="token punctuation">.</span><span class="token function">String</span><span class="token punctuation">(</span><span class="token string">"stringflag"</span><span class="token punctuation">,</span> <span class="token string">"default"</span><span class="token punctuation">,</span> <span class="token string">"string flag value"</span><span class="token punctuation">)</span>
+<span class="token punctuation">&#125;</span>
+
+<span class="token keyword">func</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+  flag<span class="token punctuation">.</span><span class="token function">Parse</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+    
+  fmt<span class="token punctuation">.</span><span class="token function">Println</span><span class="token punctuation">(</span><span class="token string">"int flag:"</span><span class="token punctuation">,</span> <span class="token operator">*</span>intflag<span class="token punctuation">)</span>
+  fmt<span class="token punctuation">.</span><span class="token function">Println</span><span class="token punctuation">(</span><span class="token string">"bool flag:"</span><span class="token punctuation">,</span> <span class="token operator">*</span>boolflag<span class="token punctuation">)</span>
+  fmt<span class="token punctuation">.</span><span class="token function">Println</span><span class="token punctuation">(</span><span class="token string">"string flag:"</span><span class="token punctuation">,</span> <span class="token operator">*</span>stringflag<span class="token punctuation">)</span>
+<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h2 id="5-高级用法"><a href="#5-高级用法" class="headerlink" title="5 高级用法"></a>5 高级用法</h2><h3 id="5-1-定义短选项"><a href="#5-1-定义短选项" class="headerlink" title="5.1 定义短选项"></a>5.1 定义短选项</h3><p>flag库并没有显示支持短选项，但是可以通过给某个相同的变量设置不同的选项来实现。即两个选项共享同一个变量。 由于初始化顺序不确定，必须保证它们拥有相同的默认值。否则不传该选项时，行为是不确定的</p>
+<pre class="line-numbers language-go" data-language="go"><code class="language-go"><span class="token keyword">package</span> main
+
+<span class="token keyword">import</span> <span class="token punctuation">(</span>
+  <span class="token string">"fmt"</span>
+  <span class="token string">"flag"</span>
+<span class="token punctuation">)</span>
+
+<span class="token keyword">var</span> logLevel <span class="token builtin">string</span>
+
+<span class="token keyword">func</span> <span class="token function">init</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+  <span class="token keyword">const</span> <span class="token punctuation">(</span>
+    defaultLogLevel <span class="token operator">=</span> <span class="token string">"DEBUG"</span>
+    usage <span class="token operator">=</span> <span class="token string">"set log level value"</span>
+  <span class="token punctuation">)</span>
+  
+  flag<span class="token punctuation">.</span><span class="token function">StringVar</span><span class="token punctuation">(</span><span class="token operator">&amp;</span>logLevel<span class="token punctuation">,</span> <span class="token string">"log_type"</span><span class="token punctuation">,</span> defaultLogLevel<span class="token punctuation">,</span> usage<span class="token punctuation">)</span>
+  flag<span class="token punctuation">.</span><span class="token function">StringVar</span><span class="token punctuation">(</span><span class="token operator">&amp;</span>logLevel<span class="token punctuation">,</span> <span class="token string">"l"</span><span class="token punctuation">,</span> defaultLogLevel<span class="token punctuation">,</span> usage <span class="token operator">+</span> <span class="token string">"(shorthand)"</span><span class="token punctuation">)</span>
+<span class="token punctuation">&#125;</span>
+
+<span class="token keyword">func</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+  flag<span class="token punctuation">.</span><span class="token function">Parse</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+
+  fmt<span class="token punctuation">.</span><span class="token function">Println</span><span class="token punctuation">(</span><span class="token string">"log level:"</span><span class="token punctuation">,</span> logLevel<span class="token punctuation">)</span>
+<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h3 id="5-2-解析时间间隔"><a href="#5-2-解析时间间隔" class="headerlink" title="5.2 解析时间间隔"></a>5.2 解析时间间隔</h3><p>除了能使用基本类型作为选项，flag库还支持time.Duration类型，即时间间隔。时间间隔支持的格式非常之多，例如”300ms”、”-1.5h”、“2h45m”等等等等。 时间单位可以是 ns/us/ms/s/m/h/day 等。实际上flag内部会调用time.ParseDuration。具体支持的格式可以参见time（需fq）库的文档。</p>
+<pre class="line-numbers language-go" data-language="go"><code class="language-go"><span class="token keyword">package</span> main
+
+<span class="token keyword">import</span> <span class="token punctuation">(</span>
+  <span class="token string">"flag"</span>
+  <span class="token string">"fmt"</span>
+  <span class="token string">"time"</span>
+<span class="token punctuation">)</span>
+
+<span class="token keyword">var</span> <span class="token punctuation">(</span>
+  period time<span class="token punctuation">.</span>Duration
+<span class="token punctuation">)</span>
+
+<span class="token keyword">func</span> <span class="token function">init</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+  flag<span class="token punctuation">.</span><span class="token function">DurationVar</span><span class="token punctuation">(</span><span class="token operator">&amp;</span>period<span class="token punctuation">,</span> <span class="token string">"period"</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token operator">*</span>time<span class="token punctuation">.</span>Second<span class="token punctuation">,</span> <span class="token string">"sleep period"</span><span class="token punctuation">)</span>
+<span class="token punctuation">&#125;</span>
+
+<span class="token keyword">func</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+  flag<span class="token punctuation">.</span><span class="token function">Parse</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+  fmt<span class="token punctuation">.</span><span class="token function">Printf</span><span class="token punctuation">(</span><span class="token string">"Sleeping for %v..."</span><span class="token punctuation">,</span> period<span class="token punctuation">)</span>
+  time<span class="token punctuation">.</span><span class="token function">Sleep</span><span class="token punctuation">(</span>period<span class="token punctuation">)</span>
+  fmt<span class="token punctuation">.</span><span class="token function">Println</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
                 
             </div>
@@ -587,7 +643,7 @@ bootp
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="http://obelia.ml/2020/05/27/wireshark-yu-fa/">http://obelia.ml/2020/05/27/wireshark-yu-fa/</a>
+                    <a href="http://obelia.ml/2021/06/16/go-ku-zhi-flag/">http://obelia.ml/2021/06/16/go-ku-zhi-flag/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -625,8 +681,8 @@ bootp
                     
                         <div class="article-tag">
                             
-                                <a href="/tags/%E5%B7%A5%E5%85%B7/">
-                                    <span class="chip bg-color">工具</span>
+                                <a href="/tags/Go%E8%AF%AD%E8%A8%80/">
+                                    <span class="chip bg-color">Go语言</span>
                                 </a>
                             
                         </div>
@@ -824,24 +880,24 @@ bootp
             <div class="article-badge left-badge text-color">
                 <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
             <div class="card">
-                <a href="/2020/06/10/linux-ji-chu/">
+                <a href="/2021/06/17/go-ku-zhi-go-flag/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/2.jpg" class="responsive-img" alt="Linux 基础">
+                        <img src="/medias/featureimages/7.jpg" class="responsive-img" alt="Go 库之go-flag">
                         
-                        <span class="card-title">Linux 基础</span>
+                        <span class="card-title">Go 库之go-flag</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            Linux 学习笔记
+                            go-flag库
                         
                     </div>
                     <div class="publish-info">
                         <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2020-06-10
+                            <i class="far fa-clock fa-fw icon-date"></i>2021-06-17
                         </span>
                         <span class="publish-author">
                             
@@ -854,8 +910,8 @@ bootp
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/">
-                        <span class="chip bg-color">基础知识</span>
+                    <a href="/tags/Go%E8%AF%AD%E8%A8%80/">
+                        <span class="chip bg-color">Go语言</span>
                     </a>
                     
                 </div>
@@ -869,24 +925,24 @@ bootp
                 下一篇&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2020/03/10/iterm2-pei-zhi/">
+                <a href="/2021/05/27/yu-ming-dns-pei-zhi/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/6.jpg" class="responsive-img" alt="iterm2配置">
+                        <img src="/medias/featureimages/7.jpg" class="responsive-img" alt="域名/DNS 配置">
                         
-                        <span class="card-title">iterm2配置</span>
+                        <span class="card-title">域名/DNS 配置</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            ITerm2 配置
+                            域名/DNS 相关配置
                         
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2020-03-10
+                                <i class="far fa-clock fa-fw icon-date"></i>2021-05-27
                             </span>
                         <span class="publish-author">
                             
